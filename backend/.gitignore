@@ -30,6 +30,7 @@ Thumbs.db
 .coverage
 htmlcov/
 .pytest_cache/
+test.py
 
 # Ruff cache
 .cache/
