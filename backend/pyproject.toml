@@ -1,0 +1,37 @@
+[project]
+name = "empathybot-backend"
+version = "0.1.0"
+description = "Backend for empathybot"
+authors = [
+    { name = "Pratham Paleriya", email = "prathampaleriya@gmail.com" }
+]
+license = { text = "CC BY-NC-ND 4.0" }
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "0.4.1"
+pre-commit = "3.7.0"
+pytest = "^8.3.5"
+
+[tool.ruff]
+line-length = 100
+indent-width = 4
+target-version = "py311"
+extend-exclude = ["__init__.py", "migrations"]
+
+[tool.ruff.lint]
+extend-select = ["UP", "E", "I", "D"]
+ignore = ["D100", "D104", "D106", "D107"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+indent-style = "space"
+quote-style = "double"
