@@ -1,0 +1,6 @@
+python-dotenv
+pinecone
+sentence_transformers
+openai
+pymongo
+redis
