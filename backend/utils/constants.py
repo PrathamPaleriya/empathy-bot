@@ -1,2 +1,2 @@
-EMBEDDING_MODEL = "all-MiniLM-L6-v2"
+EMBEDDING_MODEL = "text-embedding-3-small"
 OPENAI_MODEL = "gpt-4o-mini"

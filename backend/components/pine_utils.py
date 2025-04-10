@@ -1,9 +1,10 @@
 import random
 import string
+from datetime import datetime
 
 from pinecone import Pinecone
 
-from utils.load_env import pinecone_api, pinecone_index
+from utils.load_env import pinecone_api, pinecone_index, pinecone_namespace
 
 pine_client = Pinecone(
     api_key=pinecone_api
@@ -26,12 +27,16 @@ async def upsert_data(
     try:
         vector_id = f"{user_id}#{_generate_id()}"
         index.upsert(
+            namespace=pinecone_namespace,
             vectors=[
                 {
                     "id": vector_id,
                     "values": vector,
                     "metadata": {
-                        "user_id": user_id, "type": memory_type, "text": text
+                        "user_id": user_id, 
+                        "type": memory_type, 
+                        "text": text, 
+                        "created_at": datetime.now().isoformat()
                     }
                 }
             ]
@@ -52,6 +57,7 @@ async def fetch_data(
         }
 
         result = index.query(
+            namespace=pinecone_namespace,
             vector=vector,
             filter=metadata_filter,
             top_k=top_k,
@@ -70,6 +76,7 @@ async def list_data(
     """Pinecone util function to list all the vector assisiated to the user."""
     try:
         result = index.list(
+            namespace=pinecone_namespace,
             prefix=f"{user_id}#"
         )
 
@@ -85,6 +92,7 @@ async def delete_data_by_id(
     """Pinecone util function to delete the vector by id."""
     try:
         index.delete(
+            namespace=pinecone_namespace,
             ids=ids
         )
     except Exception as e:
@@ -96,8 +104,8 @@ async def delete_user_data(
 ) -> None:
     """Pinecone util function to delete all vector of user."""
     try:
-        for ids in index.list(prefix=f'{user_id}#'):
-            index.delete(ids=ids)
+        for ids in index.list(prefix=f'{user_id}#', namespace=pinecone_namespace):
+            index.delete(ids=ids, namespace=pinecone_namespace)
 
     except Exception as e:
         raise e
