@@ -29,18 +29,24 @@ class MemoryAgent:
 
 
     async def _append_core(self, type:str, key:str, memory:str):
+        print(f"[append_core] type={type}, key={key}, memory={memory}")  # DEBUG
         try:
             self.core_memory[type][key] = memory
+            print(f"[append_core] Updated core_memory: {self.core_memory}")  # DEBUG
         except Exception as e:
             raise e
 
-    async def _update_core(self, type:str, memory:dict):
+    async def _update_core(self, type:str, memory:str):
+        print(f"[update_core] type={type}, memory={memory}")  # DEBUG
         try:
-            self.core_memory[type] = memory
+            memory_dict = json.loads(memory)
+            self.core_memory[type] = memory_dict
+            print(f"[update_core] Updated core_memory: {self.core_memory}")  # DEBUG
         except Exception as e:
             raise e
     
     async def _add_recall(self, type: str, memory: str):
+        print(f"[add_recall] type={type}, memory={memory}")  # DEBUG
         try:
             vector = get_embedding(memory)
 
@@ -55,7 +61,22 @@ class MemoryAgent:
             raise e
         
     async def run(self):
-        """Main Fuction to run the agent."""
+        """Main function to run the agent.
+
+        Returns: dict: 
+        - On success:
+        {
+            "success": True,
+            "output": response.output,
+            "updated_core_memory": self.core_memory
+        }
+        ---
+        - On failure:
+        {
+            "success": False,
+            "exception": e
+        }
+        """
         user_message = [
             {
                 "role": "system",
@@ -87,6 +108,7 @@ class MemoryAgent:
             )
 
             for action in response.output:
+                print("[MemoryAgent] response:", action) #DEBUG
                 if action.type == "function_call":
                     function_name = action.name
                     function_to_call = available_functions[function_name]

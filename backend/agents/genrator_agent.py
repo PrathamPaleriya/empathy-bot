@@ -49,7 +49,22 @@ class GenratorAgent:
 
 
     async def run(self):
-        """Main Fuction to run the agent."""
+        """Main function to run the agent asynchronously.
+
+        Returns: dict: 
+        - On success:
+        {
+            "success": True,
+            "output": concatenated agent replies or message,
+            "crisi": self.crisi
+        }
+        ---
+        - On failure:
+        {
+            "success": False,
+            "exception": e
+        }
+        """
         reply = []
         model = OPENAI_MODEL
         messsage = [
@@ -79,22 +94,31 @@ class GenratorAgent:
                 temperature=0
             )
 
+            print("[GenratorAgent] response:", response.output) #DEBUG
             for actions in response.output:
                 if actions.type == "message":
                     reply.append(actions.content[0].text)
                 
                 elif actions.type == "function_call":
+
                     function_name = actions.name
                     function_to_call = available_functions[function_name]
                     function_args = json.loads(actions.arguments)
-                    function_response = function_to_call(**function_args)
+                    function_response = await function_to_call(**function_args)
 
+                    messsage.append(
+                        {
+                            "type": "function_call",
+                            "call_id":  actions.call_id,
+                            "name": actions.name,
+                            "arguments": actions.arguments
+                        }
+                    )
                     messsage.append(
                         {
                             "type": "function_call_output",
                             "call_id": actions.call_id,
                             "output": str(function_response)
-
                         }
                     )
                     
@@ -107,7 +131,7 @@ class GenratorAgent:
                 
                 else:
                     return {
-                        "success": True,
+                        "success": False,
                         "output": f"Invalid Reponse Type: {actions.type}",
                         "crisi": self.crisi
                     }

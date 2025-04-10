@@ -23,7 +23,7 @@ memory_agent_tool = [
                     "description": "The memory content to append.",
                 }
             },
-            "required": ["type", "memory"],
+            "required": ["type", "memory", "key"],
             "additionalProperties": False
         },
     },
@@ -38,16 +38,16 @@ memory_agent_tool = [
                 "type": {
                     "type": "string",
                     "enum": ["user_core", "assistant_core"],
-                    "description": "The category of core memory to update.",
+                    "description": "The category of core memory to update."
                 },
                 "memory": {
-                    "type": "object",
+                    "type": "string",
                     "description": "A dictionary representing the complete updated core memory content.",
                 }
             },
             "required": ["type", "memory"],
             "additionalProperties": False
-        },
+        }
     },
     {
         "type": "function",

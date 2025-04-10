@@ -4,13 +4,13 @@ from datetime import datetime
 
 from pinecone import Pinecone
 
-from utils.load_env import pinecone_api, pinecone_index, pinecone_namespace
+from utils.load_env import pinecone_api, pinecone_namespace
 
 pine_client = Pinecone(
     api_key=pinecone_api
 )
 index = pine_client.Index(
-    pinecone_index
+    "hobby"
 )
 
 def _generate_id(length=7):
