@@ -1,7 +1,7 @@
 import json
 
 from agents.utils.prompt_template import PromptTemplate
-from agents.utils.prompts import genrator_agent_prompt
+from agents.utils.prompts import genrator_agent_prompt, second_system_prompt
 from agents.utils.tools import genrator_agent_tool
 from components.embedding import get_embedding
 from components.openai_utils import openai_client
@@ -9,6 +9,7 @@ from components.pine_utils import fetch_data
 from utils.constants import OPENAI_MODEL
 
 genrator_agent_prompt_template =  PromptTemplate(genrator_agent_prompt)
+second_agent_prompt_template =  PromptTemplate(second_system_prompt)
 
 class GenratorAgent:
     """Genrator agent whose main task is to genrate response."""
@@ -39,10 +40,11 @@ class GenratorAgent:
 
             value = []
             for match in response:
-                if 'text' in match['metadata']:
-                    value.append(match['metadata']['text'])
+                if match["score"] > 0.8500:
+                    if 'text' in match['metadata']:
+                        value.append(match['metadata']['text'])
 
-            return "\n".join(value)
+            return { "recall_memory" : "\n".join(value)}
         
         except Exception as e:
             raise e
@@ -106,24 +108,33 @@ class GenratorAgent:
                     function_args = json.loads(actions.arguments)
                     function_response = await function_to_call(**function_args)
 
-                    messsage.append(
+                    second_message = [
+                        {
+                            "role": "system",
+                            "content": second_agent_prompt_template.format(
+                                core_memory = self.core_memory,
+                                conversation_history = self.chat_history
+                            )
+                        },
+                        {
+                            "role": "user",
+                            "content": self.message
+                        },
                         {
                             "type": "function_call",
                             "call_id":  actions.call_id,
                             "name": actions.name,
                             "arguments": actions.arguments
-                        }
-                    )
-                    messsage.append(
+                        },
                         {
                             "type": "function_call_output",
                             "call_id": actions.call_id,
                             "output": str(function_response)
                         }
-                    )
+                    ]
                     
                     second_response = openai_client.responses.create(
-                        input=messsage,
+                        input=second_message,
                         model=model
                     )
                     
