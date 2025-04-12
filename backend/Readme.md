@@ -37,7 +37,7 @@ Prerequisites:
 Setup Instructions:
 
 1. Clone the repository:
-   git clone https://github.com/your-username/empathybot-backend.git
+   git clone https://github.com/PrathamPaleriya/empathy-bot.git
    cd empathybot-backend
 
 2. Create and activate a virtual environment:
