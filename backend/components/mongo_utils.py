@@ -71,3 +71,30 @@ def fetch_core(user_id: str):
     
     except Exception as e:
         raise e
+
+
+def get_user_by_id(user_id: str):
+    """Mongo Util function to get user by id."""
+    try:
+        data = collection.find_one(
+            {
+                "_id": ObjectId(user_id),
+            }
+        )
+
+        return data if data else None
+    except Exception as e:
+        raise e
+    
+def get_user_by_email(email: str):
+    """Mongo Util function to get user by id."""
+    try:
+        data = collection.find_one(
+            {
+                "profile.email": email,
+            }
+        )
+
+        return data if data else None
+    except Exception as e:
+        raise e

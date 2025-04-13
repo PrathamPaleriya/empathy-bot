@@ -1,8 +1,23 @@
-python-dotenv==1.1.0
-pinecone==6.0.2
-openai==1.72.0
+# Core
+fastapi==0.115.12
+uvicorn==0.34.1
+
+# MongoDB
 pymongo==4.12.0
+
+# Redis
 redis==5.2.1
+
+# OpenAI & Pinecone
+openai==1.72.0
+pinecone==6.0.2
+
+# Env
+python-dotenv==1.1.0
+
+# Auth
+python-jose==3.4.0
+passlib[bcrypt]
 
 # Linting
 ruff==0.11.4
