@@ -33,7 +33,10 @@ def get_core(user_id: str) -> dict:
         core_memory = redis_client.get(
             key
         )
-        return json.loads(core_memory.decode("utf-8"))
+        if core_memory:
+            return json.loads(core_memory.decode("utf-8"))
+        else:
+            return None
     
     except Exception as e:
         raise e

@@ -4,8 +4,10 @@ from agents.utils.prompt_template import PromptTemplate
 from agents.utils.prompts import memory_agent_prompt
 from agents.utils.tools import memory_agent_tool
 from components.embedding import get_embedding
+from components.mongo_utils import check_and_update_core
 from components.openai_utils import openai_client
 from components.pine_utils import upsert_data
+from components.redis_utils import set_core
 from utils.constants import OPENAI_MODEL
 
 memory_agent_prompt_template =  PromptTemplate(memory_agent_prompt)
@@ -29,19 +31,32 @@ class MemoryAgent:
 
 
     async def _append_core(self, type:str, key:str, memory:str):
-        print(f"[append_core] type={type}, key={key}, memory={memory}")  # DEBUG
         try:
             self.core_memory[type][key] = memory
-            print(f"[append_core] Updated core_memory: {self.core_memory}")  # DEBUG
+            check_and_update_core(
+                core_memory=self.core_memory,
+                user_id=self.user_id
+            )
+            set_core(
+                user_id=self.user_id,
+                core=self.core_memory
+            )
+
         except Exception as e:
             raise e
 
     async def _update_core(self, type:str, memory:str):
-        print(f"[update_core] type={type}, memory={memory}")  # DEBUG
         try:
             memory_dict = json.loads(memory)
             self.core_memory[type] = memory_dict
-            print(f"[update_core] Updated core_memory: {self.core_memory}")  # DEBUG
+            check_and_update_core(
+                core_memory=self.core_memory,
+                user_id=self.user_id
+            )
+            set_core(
+                user_id=self.user_id,
+                core=self.core_memory
+            )
         except Exception as e:
             raise e
     

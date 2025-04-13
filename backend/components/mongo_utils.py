@@ -42,7 +42,10 @@ def check_and_update_core(core_memory: dict, user_id: str):
             {"core_memory": 1, "_id": 0}
         )
 
-        if old_core_memory != core_memory:
+        if (
+            old_core_memory and
+            old_core_memory.get("core_memory") != core_memory
+        ):
             collection.update_one(
                 {"_id": ObjectId(user_id)},
                 {
@@ -64,7 +67,7 @@ def fetch_core(user_id: str):
             {"core_memory": 1, "_id": 0}
         )
 
-        return core_memory
+        return core_memory.get("core_memory")
     
     except Exception as e:
         raise e
