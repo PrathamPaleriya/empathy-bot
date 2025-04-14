@@ -7,6 +7,7 @@ from components.embedding import get_embedding
 from components.openai_utils import openai_client
 from components.pine_utils import fetch_data
 from utils.constants import OPENAI_MODEL
+from utils.logger_config import logger
 
 genrator_agent_prompt_template =  PromptTemplate(genrator_agent_prompt)
 second_agent_prompt_template =  PromptTemplate(second_system_prompt)
@@ -39,6 +40,15 @@ class GenratorAgent:
             )
 
             value = []
+
+            logger.info(
+                "Vector search response:",
+                extra={
+                    "matches": response,
+                    "user_id": self.user_id
+                }
+            )
+
             for match in response:
                 if match["score"] > 0.8500:
                     if 'text' in match['metadata']:
@@ -96,7 +106,14 @@ class GenratorAgent:
                 temperature=0
             )
 
-            print("[GenratorAgent] response:", response.output) #DEBUG
+            logger.info(
+                "[GenratorAgent] response:",
+                extra={
+                    "response": response,
+                    "user_id": self.user_id
+                }
+            )
+
             for actions in response.output:
                 if actions.type == "message":
                     reply.append(actions.content[0].text)
@@ -108,6 +125,16 @@ class GenratorAgent:
                     function_args = json.loads(actions.arguments)
                     function_response = await function_to_call(**function_args)
 
+                    logger.info(
+                        "Tool calling in [GenratorAgent]:",
+                        extra={
+                            "function": actions.name,
+                            "arguments": actions.arguments,
+                            "user_id": self.user_id,
+                            "output": str(function_response)
+                        }
+                    )
+                    
                     second_message = [
                         {
                             "role": "system",
@@ -137,6 +164,14 @@ class GenratorAgent:
                         input=second_message,
                         model=model
                     )
+
+                    logger.info(
+                        "[Second Genrator Agent] response:",
+                        extra={
+                            "response": response,
+                            "user_id": self.user_id
+                        }
+                    )
                     
                     reply.append(second_response.output_text)
                 
@@ -155,6 +190,13 @@ class GenratorAgent:
         
         
         except Exception as e:
+            logger.info(
+                "Error happend in [Genrator Agent]:",
+                extra={
+                    "error": e,
+                    "user_id": self.user_id
+                }
+            )
             
             return {
                 "success": False,

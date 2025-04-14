@@ -9,6 +9,7 @@ from components.openai_utils import openai_client
 from components.pine_utils import upsert_data
 from components.redis_utils import set_core
 from utils.constants import OPENAI_MODEL
+from utils.logger_config import logger
 
 memory_agent_prompt_template =  PromptTemplate(memory_agent_prompt)
 
@@ -61,7 +62,6 @@ class MemoryAgent:
             raise e
     
     async def _add_recall(self, type: str, memory: str):
-        print(f"[add_recall] type={type}, memory={memory}")  # DEBUG
         try:
             vector = get_embedding(memory)
 
@@ -122,13 +122,29 @@ class MemoryAgent:
                 temperature=0
             )
 
+            logger.info(
+                "[MemoryAgent] response:",
+                extra={
+                    "response": response,
+                    "user_id": self.user_id
+                }
+            )
+
             for action in response.output:
-                print("[MemoryAgent] response:", action) #DEBUG
                 if action.type == "function_call":
                     function_name = action.name
                     function_to_call = available_functions[function_name]
                     function_args = json.loads(action.arguments)
                     await function_to_call(**function_args)
+
+                    logger.info(
+                        "Tool calling in [MemoryAgent]:",
+                        extra={
+                            "function": action.name,
+                            "arguments": action.arguments,
+                            "user_id": self.user_id
+                        }
+                    )
 
             return {
                 "success": True,
@@ -137,6 +153,13 @@ class MemoryAgent:
             }
 
         except Exception as e:
+            logger.info(
+                "Error happend in [MemoryAgent]:",
+                extra={
+                    "error": e,
+                    "user_id": self.user_id
+                }
+            )
             
             return {
                 "success": False,

@@ -9,6 +9,7 @@ from components.auth_utils import (
     verify_password,
 )
 from components.mongo_utils import get_user_by_email
+from utils.logger_config import logger
 
 auth_router = APIRouter()
 
@@ -32,35 +33,71 @@ async def signup(request: SignUpRequest):
     """Signup Route."""
     email = request.email
     password = request.password
+    logger.info(
+        "Signup request",
+        extra={
+            "email": email,
+            "password": password
+        }
+    )
+
     if not email or not password:
         raise HTTPException(status_code=400, detail="Email and password required")
 
-    user_id = create_user_profile(
-        email=email,
-        password=password
-    )
-    token = create_access_token(data={"sub": user_id})
-    return {"access_token": token, "token_type": "bearer", "user_id": user_id}
+    try:
+        user_id = create_user_profile(
+            email=email,
+            password=password
+        )
+        token = create_access_token(data={"sub": user_id})
+        return {"access_token": token, "token_type": "bearer", "user_id": user_id}
+    
+    except Exception as e:
+        logger.exception(
+            "Error happened in in signup route.",
+            extra={
+                "exception": e
+            }
+        )
 
 
 @auth_router.post("/login")
 async def login(request: LoginRequest):
     """Login Route."""
-    user = get_user_by_email(
-        email=request.email
+    logger.info(
+        "login request",
+        extra={
+            "email": request.email,
+            "password": request.password
+        }
     )
-    if user and verify_password(
-        request.password,
-        user["profile"]["password"]
-    ):
-        token = create_access_token(data={"sub": str(user["_id"])})
-        return {"access_token": token, "token_type": "bearer"}
-    else:
-        raise HTTPException(status_code=401, detail="Invalid credentials")
+    try:
+        user = get_user_by_email(
+            email=request.email
+        )
+        if user and verify_password(
+            request.password,
+            user["profile"]["password"]
+        ):
+            token = create_access_token(data={"sub": str(user["_id"])})
+            return {"access_token": token, "token_type": "bearer"}
+        else:
+            raise HTTPException(status_code=401, detail="Invalid credentials")
+    except Exception as e:
+        logger.exception(
+            "Error happened in in login route.",
+            extra={
+                "exception": e
+            }
+        )
 
 @auth_router.get("/me")
 async def get_me(user: dict = Depends(get_current_user)):
     """User Details Route."""
+    logger.info(
+        "Request for user details route"
+    )
+    
     return {
         "email": user["profile"]["email"],
         "user_id": str(user["_id"]),

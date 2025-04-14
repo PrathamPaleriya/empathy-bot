@@ -2,6 +2,7 @@ from fastapi import APIRouter, FastAPI
 
 from routes.auth import auth_router
 from utils.constants import ROUTE_PREFIX
+from utils.logger_config import logger
 
 app = FastAPI(
     title="Empathy-Bot Backend, By Pratham Paleriya",
@@ -14,6 +15,9 @@ route = APIRouter()
 @route.get("/ping")
 def ping():
     """Route to check the connection."""
+    logger.info(
+        "Ping route"
+    )
     return "Welcome to Empathy bot server"
 
 app.include_router(route)
