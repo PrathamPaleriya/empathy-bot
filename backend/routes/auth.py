@@ -8,7 +8,9 @@ from components.auth_utils import (
     get_current_user,
     verify_password,
 )
-from components.mongo_utils import get_user_by_email
+from components.mongo_utils import delete_user_by_id, get_user_by_email, get_user_by_id
+from components.pine_utils import delete_user_data
+from components.redis_utils import delete_core
 from utils.logger_config import logger
 
 auth_router = APIRouter()
@@ -56,7 +58,8 @@ async def signup(request: SignUpRequest):
         logger.exception(
             "Error happened in in signup route.",
             extra={
-                "exception": e
+                "exception": e,
+                "email": email
             }
         )
 
@@ -87,7 +90,8 @@ async def login(request: LoginRequest):
         logger.exception(
             "Error happened in in login route.",
             extra={
-                "exception": e
+                "exception": e,
+                "email": request.email
             }
         )
 
@@ -103,3 +107,42 @@ async def get_me(user: dict = Depends(get_current_user)):
         "user_id": str(user["_id"]),
         "core_memory": user.get("core_memory", {})
     }
+
+
+@auth_router.delete("/me")
+async def delete_me(user_id: str = Depends(get_user_by_id)):
+    """Route to delete account and all the data."""
+    logger.info(
+        "User request to Delete Account.",
+        extra={
+            "user_id": user_id
+        }
+    )
+
+    try:
+        delete_user_by_id(
+            user_id=user_id
+        )
+        delete_core(
+            user_id=user_id
+        )
+        await delete_user_data(
+            user_id=user_id
+        )
+
+        return {
+            "success": True
+        }
+    
+    except Exception as e:
+        logger.exception(
+            "Error happend during deleting user's account.",
+            extra={
+                "user_id": user_id,
+                "error": e
+            }
+        )
+        return {
+            "success": False
+        }
+    

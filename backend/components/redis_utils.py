@@ -41,3 +41,14 @@ def get_core(user_id: str) -> dict:
     except Exception as e:
         raise e
     
+def delete_core(user_id: str):
+    """Redis util function to get core memory."""
+    key = f'core:{user_id}'
+    try:
+        redis_client.delete(
+            key
+        )
+
+    except Exception as e:
+        raise e
+    

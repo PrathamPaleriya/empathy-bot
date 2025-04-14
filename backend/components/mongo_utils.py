@@ -98,3 +98,16 @@ def get_user_by_email(email: str):
         return data if data else None
     except Exception as e:
         raise e
+    
+def delete_user_by_id(user_id:str):
+    """Mongo Utils to delete account db."""
+    try:
+        collection.delete_one(
+            {
+                "_id": ObjectId(user_id),
+            }
+        )
+
+        return True
+    except Exception as e:
+        raise e

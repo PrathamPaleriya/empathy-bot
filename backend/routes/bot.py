@@ -102,7 +102,8 @@ async def chat(data: ChatInput, user_id: str = Depends(get_user_id)):
         logger.exception(
             "Error happened while processing message.",
             extra={
-                "exception": e
+                "exception": e,
+                "user_id": user_id
             }
         )
         raise HTTPException(status_code=500, detail="Internal Server Error")
