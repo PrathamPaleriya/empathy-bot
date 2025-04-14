@@ -130,6 +130,13 @@ async def delete_me(user_id: str = Depends(get_user_by_id)):
             user_id=user_id
         )
 
+        logger.info(
+            "User account and data deleted successfully.",
+            extra={
+                "user_id": user_id
+            }
+        )
+
         return {
             "success": True
         }
