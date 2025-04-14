@@ -50,6 +50,19 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
         raise credentials_exception
     return user
 
+def get_user_id(token: str = Depends(oauth2_scheme)):
+    """Auth util to decode the jwt and return user_id."""
+    credentials_exception = HTTPException(status_code=401, detail="Invalid token")
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        user_id = payload.get("sub")
+        if user_id is None:
+            raise credentials_exception
+        return user_id
+    except JWTError:
+        raise credentials_exception
+    
+
 def create_user_profile(email: str, password: str):
     """Auth util function to create profile."""
     if get_user_by_email(

@@ -176,11 +176,7 @@ class GenratorAgent:
                     reply.append(second_response.output_text)
                 
                 else:
-                    return {
-                        "success": False,
-                        "output": f"Invalid Reponse Type: {actions.type}",
-                        "crisi": self.crisi
-                    }
+                    raise ValueError("Invalid Response type.")
                 
             return {
                     "success": True,

@@ -67,7 +67,7 @@ def fetch_core(user_id: str):
             {"core_memory": 1, "_id": 0}
         )
 
-        return core_memory.get("core_memory")
+        return core_memory.get("core_memory", {})
     
     except Exception as e:
         raise e

@@ -1,6 +1,7 @@
 from fastapi import APIRouter, FastAPI
 
 from routes.auth import auth_router
+from routes.bot import bot_router
 from utils.constants import ROUTE_PREFIX
 from utils.logger_config import logger
 
@@ -24,6 +25,10 @@ app.include_router(route)
 app.include_router(
     auth_router,
     prefix=f"{ROUTE_PREFIX}/auth"
+)
+app.include_router(
+    bot_router,
+    prefix=f"{ROUTE_PREFIX}/bot"
 )
 
 

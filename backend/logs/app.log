@@ -1,0 +1,174 @@
+{
+  "logged_at": "2025-04-15T01:18:25.772940",
+  "level": "INFO",
+  "message": "Ping route",
+  "function_name": "ping",
+  "file_path": "C:\\Users\\prath\\Desktop\\hobby\\empathybot\\app\\backend\\main.py",
+  "line_number": 19
+}
+**************
+
+{
+  "logged_at": "2025-04-15T01:18:47.147034",
+  "level": "INFO",
+  "message": "Request for user details route",
+  "function_name": "get_me",
+  "file_path": "C:\\Users\\prath\\Desktop\\hobby\\empathybot\\app\\backend\\routes\\auth.py",
+  "line_number": 97
+}
+**************
+
+{
+  "logged_at": "2025-04-15T01:19:21.462648",
+  "level": "INFO",
+  "message": "login request",
+  "function_name": "login",
+  "file_path": "C:\\Users\\prath\\Desktop\\hobby\\empathybot\\app\\backend\\routes\\auth.py",
+  "line_number": 67,
+  "email": "prathampaleriya@gmail.com",
+  "password": "Pass@123"
+}
+**************
+
+{
+  "logged_at": "2025-04-15T01:22:37.165040",
+  "level": "INFO",
+  "message": "Message received:",
+  "function_name": "chat",
+  "file_path": "C:\\Users\\prath\\Desktop\\hobby\\empathybot\\app\\backend\\routes\\bot.py",
+  "line_number": 23,
+  "user_message": "Hey",
+  "user_id": "67fc2a2eb02e1ed4f54128a8"
+}
+**************
+
+{
+  "logged_at": "2025-04-15T01:22:38.029256",
+  "level": "ERROR",
+  "message": "Error happened while processing message.",
+  "function_name": "chat",
+  "file_path": "C:\\Users\\prath\\Desktop\\hobby\\empathybot\\app\\backend\\routes\\bot.py",
+  "line_number": 103,
+  "exception": "404: Core memory not found"
+}
+**************
+
+{
+  "logged_at": "2025-04-15T01:26:24.913993",
+  "level": "INFO",
+  "message": "Message received:",
+  "function_name": "chat",
+  "file_path": "C:\\Users\\prath\\Desktop\\hobby\\empathybot\\app\\backend\\routes\\bot.py",
+  "line_number": 23,
+  "user_message": "Hey",
+  "user_id": "67fc2a2eb02e1ed4f54128a8"
+}
+**************
+
+{
+  "logged_at": "2025-04-15T01:26:26.540803",
+  "level": "INFO",
+  "message": "[MemoryAgent] response:",
+  "function_name": "run",
+  "file_path": "C:\\Users\\prath\\Desktop\\hobby\\empathybot\\app\\backend\\agents\\memory_agent.py",
+  "line_number": 125,
+  "response": "Response(id='resp_67fd6869c86081918550cc4bd5605728051c1fd5acfff2e0', created_at=1744660585.0, error=None, incomplete_details=None, instructions=None, metadata={}, model='gpt-4o-mini-2024-07-18', object='response', output=[ResponseOutputMessage(id='msg_67fd686a77a88191ac30b321c04149da051c1fd5acfff2e0', content=[ResponseOutputText(annotations=[], text='FALSE', type='output_text')], role='assistant', status='completed', type='message')], parallel_tool_calls=True, temperature=0.0, tool_choice='auto', tools=[FunctionTool(name='append_core', parameters={'type': 'object', 'properties': {'type': {'type': 'string', 'enum': ['user_core', 'assistant_core'], 'description': 'The category of core memory to append to.'}, 'key': {'type': 'string', 'description': 'The key associated with the memory to append.'}, 'memory': {'type': 'string', 'description': 'The memory content to append.'}}, 'required': ['type', 'memory', 'key'], 'additionalProperties': False}, strict=True, type='function', description='Append information to the core memory.'), FunctionTool(name='update_core', parameters={'type': 'object', 'properties': {'type': {'type': 'string', 'enum': ['user_core', 'assistant_core'], 'description': 'The category of core memory to update.'}, 'memory': {'type': 'string', 'description': 'A dictionary representing the complete updated core memory content.'}}, 'required': ['type', 'memory'], 'additionalProperties': False}, strict=True, type='function', description='Update one or more entries in the core memory.'), FunctionTool(name='add_recall', parameters={'type': 'object', 'properties': {'type': {'type': 'string', 'description': 'The category or nature of the emotion or experience.'}, 'memory': {'type': 'string', 'description': 'The memory content to be stored in recall memory.'}}, 'required': ['type', 'memory'], 'additionalProperties': False}, strict=True, type='function', description='Add significant experiences, emotional events, or traumas to recall memory.')], top_p=1.0, max_output_tokens=None, previous_response_id=None, reasoning=Reasoning(effort=None, generate_summary=None), status='completed', text=ResponseTextConfig(format=ResponseFormatText(type='text')), truncation='disabled', usage=ResponseUsage(input_tokens=569, input_tokens_details=InputTokensDetails(cached_tokens=0), output_tokens=3, output_tokens_details=OutputTokensDetails(reasoning_tokens=0), total_tokens=572), user=None, store=True)",
+  "user_id": "67fc2a2eb02e1ed4f54128a8"
+}
+**************
+
+{
+  "logged_at": "2025-04-15T01:26:27.520521",
+  "level": "INFO",
+  "message": "[GenratorAgent] response:",
+  "function_name": "run",
+  "file_path": "C:\\Users\\prath\\Desktop\\hobby\\empathybot\\app\\backend\\agents\\genrator_agent.py",
+  "line_number": 109,
+  "response": "Response(id='resp_67fd686ad5a0819187010a6339ceb7a001149841da306548', created_at=1744660586.0, error=None, incomplete_details=None, instructions=None, metadata={}, model='gpt-4o-mini-2024-07-18', object='response', output=[ResponseOutputMessage(id='msg_67fd686b5eb88191bd824cc861eb90b401149841da306548', content=[ResponseOutputText(annotations=[], text='Hey Pratham! How\u2019s it going?', type='output_text')], role='assistant', status='completed', type='message')], parallel_tool_calls=True, temperature=0.0, tool_choice='auto', tools=[FunctionTool(name='look_long_term_memory', parameters={'type': 'object', 'properties': {'query': {'type': 'string', 'description': 'The query string used to retrieve relevant information from long-term memory.'}}, 'required': ['query'], 'additionalProperties': False}, strict=True, type='function', description='Search for information stored in long-term memory, such as past experiences, known individuals, or historical context.'), FunctionTool(name='crisis_alert', parameters={'type': 'object', 'properties': {'severity': {'type': 'number', 'description': 'The severity of the crisis on a scale from 1 (low) to 5 (critical).'}}, 'required': ['severity'], 'additionalProperties': False}, strict=True, type='function', description='Flag situations involving mental health emergencies, such as suicidal thoughts, self-harm, or acute depression.')], top_p=1.0, max_output_tokens=None, previous_response_id=None, reasoning=Reasoning(effort=None, generate_summary=None), status='completed', text=ResponseTextConfig(format=ResponseFormatText(type='text')), truncation='disabled', usage=ResponseUsage(input_tokens=508, input_tokens_details=InputTokensDetails(cached_tokens=0), output_tokens=11, output_tokens_details=OutputTokensDetails(reasoning_tokens=0), total_tokens=519), user=None, store=True)",
+  "user_id": "67fc2a2eb02e1ed4f54128a8"
+}
+**************
+
+{
+  "logged_at": "2025-04-15T01:26:27.521538",
+  "level": "INFO",
+  "message": "Message respone:",
+  "function_name": "chat",
+  "file_path": "C:\\Users\\prath\\Desktop\\hobby\\empathybot\\app\\backend\\routes\\bot.py",
+  "line_number": 87,
+  "user_message": "Hey",
+  "response": {
+    "success": true,
+    "output": "Hey Pratham! How\u2019s it going?",
+    "crisi": false
+  },
+  "user_id": "67fc2a2eb02e1ed4f54128a8"
+}
+**************
+
+{
+  "logged_at": "2025-04-15T01:26:46.233965",
+  "level": "INFO",
+  "message": "Message received:",
+  "function_name": "chat",
+  "file_path": "C:\\Users\\prath\\Desktop\\hobby\\empathybot\\app\\backend\\routes\\bot.py",
+  "line_number": 23,
+  "user_message": "I just had a breakup bro",
+  "user_id": "67fc2a2eb02e1ed4f54128a8"
+}
+**************
+
+{
+  "logged_at": "2025-04-15T01:26:47.408574",
+  "level": "INFO",
+  "message": "[MemoryAgent] response:",
+  "function_name": "run",
+  "file_path": "C:\\Users\\prath\\Desktop\\hobby\\empathybot\\app\\backend\\agents\\memory_agent.py",
+  "line_number": 125,
+  "response": "Response(id='resp_67fd687e92548191a3ef00bb355c25180eab139b9326485f', created_at=1744660606.0, error=None, incomplete_details=None, instructions=None, metadata={}, model='gpt-4o-mini-2024-07-18', object='response', output=[ResponseFunctionToolCall(arguments='{\"type\":\"emotional experience\",\"memory\":\"Pratham recently experienced a breakup.\"}', call_id='call_HcNfjs4ieg4Owv2Xwu3aDZai', name='add_recall', type='function_call', id='fc_67fd687f2f4c8191afa9a5554db638ed0eab139b9326485f', status='completed')], parallel_tool_calls=True, temperature=0.0, tool_choice='auto', tools=[FunctionTool(name='append_core', parameters={'type': 'object', 'properties': {'type': {'type': 'string', 'enum': ['user_core', 'assistant_core'], 'description': 'The category of core memory to append to.'}, 'key': {'type': 'string', 'description': 'The key associated with the memory to append.'}, 'memory': {'type': 'string', 'description': 'The memory content to append.'}}, 'required': ['type', 'memory', 'key'], 'additionalProperties': False}, strict=True, type='function', description='Append information to the core memory.'), FunctionTool(name='update_core', parameters={'type': 'object', 'properties': {'type': {'type': 'string', 'enum': ['user_core', 'assistant_core'], 'description': 'The category of core memory to update.'}, 'memory': {'type': 'string', 'description': 'A dictionary representing the complete updated core memory content.'}}, 'required': ['type', 'memory'], 'additionalProperties': False}, strict=True, type='function', description='Update one or more entries in the core memory.'), FunctionTool(name='add_recall', parameters={'type': 'object', 'properties': {'type': {'type': 'string', 'description': 'The category or nature of the emotion or experience.'}, 'memory': {'type': 'string', 'description': 'The memory content to be stored in recall memory.'}}, 'required': ['type', 'memory'], 'additionalProperties': False}, strict=True, type='function', description='Add significant experiences, emotional events, or traumas to recall memory.')], top_p=1.0, max_output_tokens=None, previous_response_id=None, reasoning=Reasoning(effort=None, generate_summary=None), status='completed', text=ResponseTextConfig(format=ResponseFormatText(type='text')), truncation='disabled', usage=ResponseUsage(input_tokens=574, input_tokens_details=InputTokensDetails(cached_tokens=0), output_tokens=28, output_tokens_details=OutputTokensDetails(reasoning_tokens=0), total_tokens=602), user=None, store=True)",
+  "user_id": "67fc2a2eb02e1ed4f54128a8"
+}
+**************
+
+{
+  "logged_at": "2025-04-15T01:26:49.877801",
+  "level": "INFO",
+  "message": "Tool calling in [MemoryAgent]:",
+  "function_name": "run",
+  "file_path": "C:\\Users\\prath\\Desktop\\hobby\\empathybot\\app\\backend\\agents\\memory_agent.py",
+  "line_number": 140,
+  "function": "add_recall",
+  "arguments": "{\"type\":\"emotional experience\",\"memory\":\"Pratham recently experienced a breakup.\"}",
+  "user_id": "67fc2a2eb02e1ed4f54128a8"
+}
+**************
+
+{
+  "logged_at": "2025-04-15T01:26:51.442141",
+  "level": "INFO",
+  "message": "[GenratorAgent] response:",
+  "function_name": "run",
+  "file_path": "C:\\Users\\prath\\Desktop\\hobby\\empathybot\\app\\backend\\agents\\genrator_agent.py",
+  "line_number": 109,
+  "response": "Response(id='resp_67fd68825428819196b806e3127c92ea045b8283430c8276', created_at=1744660610.0, error=None, incomplete_details=None, instructions=None, metadata={}, model='gpt-4o-mini-2024-07-18', object='response', output=[ResponseOutputMessage(id='msg_67fd6882fba4819180112569d6f88066045b8283430c8276', content=[ResponseOutputText(annotations=[], text='Oh, Pratham, I\u2019m really sorry to hear that. Breakups can be incredibly tough. How are you feeling right now? If you want to talk about it, I\u2019m here for you.', type='output_text')], role='assistant', status='completed', type='message')], parallel_tool_calls=True, temperature=0.0, tool_choice='auto', tools=[FunctionTool(name='look_long_term_memory', parameters={'type': 'object', 'properties': {'query': {'type': 'string', 'description': 'The query string used to retrieve relevant information from long-term memory.'}}, 'required': ['query'], 'additionalProperties': False}, strict=True, type='function', description='Search for information stored in long-term memory, such as past experiences, known individuals, or historical context.'), FunctionTool(name='crisis_alert', parameters={'type': 'object', 'properties': {'severity': {'type': 'number', 'description': 'The severity of the crisis on a scale from 1 (low) to 5 (critical).'}}, 'required': ['severity'], 'additionalProperties': False}, strict=True, type='function', description='Flag situations involving mental health emergencies, such as suicidal thoughts, self-harm, or acute depression.')], top_p=1.0, max_output_tokens=None, previous_response_id=None, reasoning=Reasoning(effort=None, generate_summary=None), status='completed', text=ResponseTextConfig(format=ResponseFormatText(type='text')), truncation='disabled', usage=ResponseUsage(input_tokens=513, input_tokens_details=InputTokensDetails(cached_tokens=0), output_tokens=43, output_tokens_details=OutputTokensDetails(reasoning_tokens=0), total_tokens=556), user=None, store=True)",
+  "user_id": "67fc2a2eb02e1ed4f54128a8"
+}
+**************
+
+{
+  "logged_at": "2025-04-15T01:26:51.442141",
+  "level": "INFO",
+  "message": "Message respone:",
+  "function_name": "chat",
+  "file_path": "C:\\Users\\prath\\Desktop\\hobby\\empathybot\\app\\backend\\routes\\bot.py",
+  "line_number": 87,
+  "user_message": "I just had a breakup bro",
+  "response": {
+    "success": true,
+    "output": "Oh, Pratham, I\u2019m really sorry to hear that. Breakups can be incredibly tough. How are you feeling right now? If you want to talk about it, I\u2019m here for you.",
+    "crisi": false
+  },
+  "user_id": "67fc2a2eb02e1ed4f54128a8"
+}
+**************
+
