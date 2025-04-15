@@ -1,7 +1,7 @@
 import json
 
 from agents.utils.prompt_template import PromptTemplate
-from agents.utils.prompts import genrator_agent_prompt, second_system_prompt
+from agents.utils.prompts import generator_agent_prompt, retrival_agent_prompt
 from agents.utils.tools import genrator_agent_tool
 from components.embedding import get_embedding
 from components.openai_utils import openai_client
@@ -9,8 +9,8 @@ from components.pine_utils import fetch_data
 from utils.constants import OPENAI_MODEL
 from utils.logger_config import logger
 
-genrator_agent_prompt_template =  PromptTemplate(genrator_agent_prompt)
-second_agent_prompt_template =  PromptTemplate(second_system_prompt)
+retrival_agent_prompt_template =  PromptTemplate(retrival_agent_prompt)
+generator_agent_prompt_template =  PromptTemplate(generator_agent_prompt)
 
 class GenratorAgent:
     """Genrator agent whose main task is to genrate response."""
@@ -81,15 +81,15 @@ class GenratorAgent:
         model = OPENAI_MODEL
         messsage = [
             {
-            "role": "system",
-            "content": genrator_agent_prompt_template.format(
-                core_memory = self.core_memory,
-                conversation_history = self.chat_history
-            )
+                "role": "system",
+                "content": retrival_agent_prompt_template.format(
+                    core_memory = self.core_memory,
+                    conversation_history = self.chat_history
+                )
             },
             {
-            "role": "user",
-            "content": self.message
+                "role": "user",
+                "content": self.message
             }
         ]
         available_functions = {
@@ -107,7 +107,7 @@ class GenratorAgent:
             )
 
             logger.info(
-                "[GenratorAgent] response:",
+                "[RetrivalAgent] response:",
                 extra={
                     "response": response,
                     "user_id": self.user_id
@@ -115,10 +115,7 @@ class GenratorAgent:
             )
 
             for actions in response.output:
-                if actions.type == "message":
-                    reply.append(actions.content[0].text)
-                
-                elif actions.type == "function_call":
+                if actions.type == "function_call":
 
                     function_name = actions.name
                     function_to_call = available_functions[function_name]
@@ -138,7 +135,7 @@ class GenratorAgent:
                     second_message = [
                         {
                             "role": "system",
-                            "content": second_agent_prompt_template.format(
+                            "content": generator_agent_prompt_template.format(
                                 core_memory = self.core_memory,
                                 conversation_history = self.chat_history
                             )
@@ -159,24 +156,37 @@ class GenratorAgent:
                             "output": str(function_response)
                         }
                     ]
-                    
-                    second_response = openai_client.responses.create(
-                        input=second_message,
-                        model=model
-                    )
 
-                    logger.info(
-                        "[Second Genrator Agent] response:",
-                        extra={
-                            "response": response,
-                            "user_id": self.user_id
-                        }
-                    )
-                    
-                    reply.append(second_response.output_text)
-                
                 else:
-                    raise ValueError("Invalid Response type.")
+                    second_message = [
+                        {
+                            "role": "system",
+                            "content": generator_agent_prompt_template.format(
+                                core_memory = self.core_memory,
+                                conversation_history = self.chat_history
+                            )
+                        },
+                        {
+                            "role": "user",
+                            "content": self.message
+                        }
+                    ]
+                    
+                second_response = openai_client.responses.create(
+                    input=second_message,
+                    model=model
+                )
+
+                logger.info(
+                    "[GenratorAgent] response:",
+                    extra={
+                        "response": second_response,
+                        "user_id": self.user_id
+                    }
+                )
+                    
+                reply.append(second_response.output_text)
+                
                 
             return {
                     "success": True,
