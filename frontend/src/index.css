@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-base-black: #171717;
+  --font-dm-sans: 'DM Sans', 'sans';
+  --font-manrope: 'Manrope', 'serif';
+
+  --color-bg: #fdfaee;
+  --color-primary: #57b4ba;
+  --color-secondary: #015551;
+  --color-accent: #1f96ff;
+  --color-heading: #1c1c1c;
+  --color-subheading: #343434;
+  --color-body: #4f4f4f;
+  --color-caption: #7c7c7c;
+  --color-placeholder: #bdbdbd;
+}
