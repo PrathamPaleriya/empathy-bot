@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const PaddingMarging = ({children}) => {
-  return (
-    <div className='px-[14px] md:px-10 lg:px-[136px]'>
-      {children}
-    </div>
-  )
-}
+const PaddingMarging = ({ children }) => {
+  return <div className="px-5 md:px-10 lg:px-[136px]">{children}</div>;
+};
 
-export default PaddingMarging
+export default PaddingMarging;

@@ -39,19 +39,19 @@ const Home = () => {
 
   return (
     <div className="relative h-screen max-h-screen w-full">
-      <div className="absolute bg-[#9AE2FF]/60 w-full aspect-square rounded-full -translate-y-[70%] blur-[200px]" />
+      <div className="absolute bg-[#9AE2FF]/60 w-full aspect-square rounded-full -translate-y-[20%] blur-[100px]  md:-translate-y-[70%] md:blur-[200px]" />
 
       <div className="z-20 relative">
         <div className="flex flex-col min-h-screen max-h-screen w-full">
           <div className="flex-1 w-full overflow-y-auto py-24">
             <PaddingMarging>
-              <div className="flex flex-col gap-4 w-[75%] mx-auto text-base font-semibold">
+              <div className="flex flex-col gap-2 md:gap-4 md:w-[85%] lg:w-[75%] mx-auto text-base font-semibold">
                 {chatHistory.map((msg, idx) => (
                   <div
                     key={idx}
-                    className={`max-w-[70%] h-fit px-4 py-3 rounded-2xl leading-snug whitespace-pre-wrap break-words break-all ${
+                    className={`max-w-[70%] h-fit  rounded-2xl leading-snug whitespace-pre-wrap break-words break-all ${
                       msg.role === 'user'
-                        ? 'self-end bg-[#FDFBEE] text-caption shadow-lg'
+                        ? 'self-end bg-[#FDFBEE] text-caption shadow-lg px-4 py-3'
                         : 'self-start text-start'
                     }`}
                   >
@@ -66,36 +66,34 @@ const Home = () => {
             </PaddingMarging>
           </div>
 
-          <div className="bg-bg/20 w-[70%] pt-10 pb-14 mx-auto">
-            <PaddingMarging>
-              <form
-                className="flex w-full items-center justify-center gap-3 text-heading"
-                onSubmit={handleSend}
+          <div className="bg-bg/20 w-full md:w-[85%] lg:w-[70%] px-3 md:px-7 lg:px-20 pt-8 md:pt-10 pb-13 md:pb-14 mx-auto">
+            <form
+              className="flex w-full items-center justify-center gap-2 md:gap-3 text-heading"
+              onSubmit={handleSend}
+            >
+              <textarea
+                rows={1}
+                placeholder="Type anything ..."
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                onInput={e => {
+                  e.target.style.height = 'auto';
+                  e.target.style.height = e.target.scrollHeight + 'px';
+                }}
+                className="bg-white w-full border-2 px-4 py-3  border-placeholder/20 rounded-2xl resize-none overflow-hidden leading-snug max-h-28"
+              />
+              <button
+                type="submit"
+                className="py-3 px-3 rounded-2xl bg-primary aspect-square text-white shadow-lg"
               >
-                <textarea
-                  rows={1}
-                  placeholder="Type anything ..."
-                  value={input}
-                  onChange={e => setInput(e.target.value)}
-                  onInput={e => {
-                    e.target.style.height = 'auto';
-                    e.target.style.height = e.target.scrollHeight + 'px';
-                  }}
-                  className="bg-white w-full border-2 px-4 py-3  border-placeholder/20 rounded-2xl resize-none overflow-hidden leading-snug max-h-28"
-                />
-                <button
-                  type="submit"
-                  className="py-3 px-3 rounded-2xl bg-primary aspect-square text-white shadow-lg"
-                >
-                  <ArrowRight />
-                </button>
-              </form>
-            </PaddingMarging>
+                <ArrowRight />
+              </button>
+            </form>
           </div>
         </div>
       </div>
 
-      <div className="absolute bottom-5 text-center w-full font-semibold text-placeholder">
+      <div className="absolute bottom-4 md:bottom-5 text-center w-full font-semibold text-placeholder">
         empathy-bot
       </div>
     </div>

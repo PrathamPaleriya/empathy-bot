@@ -10,7 +10,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="" element={<MainLayout />}>
-        <Route path="/chat" element={<Home/>}/>
+        <Route path="/chat" element={<Home />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
