@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import OnBoardingInput from '../../components/OnBoardingInput';
+import OnBoardingInput from '../../components/auth/OnBoardingInput';
 
 const OnBoarding = () => {
   const handleSubmit = e => {

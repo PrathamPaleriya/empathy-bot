@@ -4,11 +4,14 @@ import Login from './pages/auth/Login';
 import Signup from './pages/auth/Signup';
 import OnBoarding from './pages/auth/OnBoarding';
 import MainLayout from './layouts/MainLayout';
+import Home from './pages/Home';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="" element={<MainLayout />}></Route>
+      <Route path="" element={<MainLayout />}>
+        <Route path="/chat" element={<Home/>}/>
+      </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/onboarding" element={<OnBoarding />} />

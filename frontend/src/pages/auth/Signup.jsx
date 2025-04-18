@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AuthInput from '../../components/AuthInput';
+import AuthInput from '../../components/auth/AuthInput';
 
 const Signup = () => {
   const handleSubmit = e => {
