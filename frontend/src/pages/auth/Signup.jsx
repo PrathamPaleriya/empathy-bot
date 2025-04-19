@@ -1,12 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AuthInput from '../../components/auth/AuthInput';
+import AuthSignup from '../../components/auth/AuthSignup';
 
 const Signup = () => {
-  const handleSubmit = e => {
-    e.preventDefault();
-  };
-
   return (
     <div className="flex flex-col justify-center items-center bg-bg w-full min-h-screen h-full px-3 lg:px-20">
       <div className="text-primary font-semibold text-3xl md:text-4xl lg:text-5xl font-dm-sans md:leading-11 lg:leading-14 text-center">
@@ -15,11 +11,7 @@ const Signup = () => {
       </div>
       <div className="w-full md:w-[70%] lg:w-[30%] my-10">
         <div className="my-3 text-center text-subheading">Create an Account.</div>
-        <AuthInput
-          handleSubmit={handleSubmit}
-          linkHref={'/login'}
-          linkText={'Already have an account? login'}
-        />
+        <AuthSignup />
       </div>
       <div className="font-manrope text-center w-[95%] md:w-[80%] lg:w-[60%] pt-20 font-semibold text-subheading">
         No pressure. Just vibes ✨ We don't store your chats — so speak your heart without stress.

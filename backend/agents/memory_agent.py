@@ -48,6 +48,7 @@ class MemoryAgent:
 
     async def _update_core(self, type:str, memory:str):
         try:
+            memory_dict = json.loads(memory.replace("'", '"'))
             memory_dict = json.loads(memory)
             self.core_memory[type] = memory_dict
             check_and_update_core(

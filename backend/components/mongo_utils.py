@@ -59,6 +59,21 @@ def check_and_update_core(core_memory: dict, user_id: str):
     except Exception as e:
         raise e
     
+def user_onboarding(core_memory: dict, user_id: str):
+    """Mongo utils function to onboarding the user by saving core memory in initial."""
+    try:
+        collection.update_one(
+            {"_id": ObjectId(user_id)},
+            {
+               "$set": {
+                    "core_memory": core_memory, 
+                    "updated_at": datetime.now() 
+                } 
+            }
+        )
+    except Exception as e:
+        raise e
+    
 def fetch_core(user_id: str):
     """Mongo Util function to return core_memory of a user."""
     try:

@@ -5,6 +5,7 @@ import Signup from './pages/auth/Signup';
 import OnBoarding from './pages/auth/OnBoarding';
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
+import { AppProvider } from './context/MainContext';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,7 +23,9 @@ const router = createBrowserRouter(
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <AppProvider>
+        <RouterProvider router={router} />
+      </AppProvider>
     </>
   );
 }

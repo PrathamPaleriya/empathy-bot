@@ -50,9 +50,8 @@ class GenratorAgent:
             )
 
             for match in response:
-                if match["score"] > 0.8500:
-                    if 'text' in match['metadata']:
-                        value.append(match['metadata']['text'])
+                if 'text' in match['metadata']:
+                    value.append(match['metadata']['text'])
 
             return { "recall_memory" : "\n".join(value)}
         

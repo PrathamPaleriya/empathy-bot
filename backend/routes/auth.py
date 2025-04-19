@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Body, Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
 from pydantic import BaseModel
 
@@ -6,9 +6,15 @@ from components.auth_utils import (
     create_access_token,
     create_user_profile,
     get_current_user,
+    get_user_id,
     verify_password,
 )
-from components.mongo_utils import delete_user_by_id, get_user_by_email, get_user_by_id
+from components.mongo_utils import (
+    delete_user_by_id,
+    get_user_by_email,
+    get_user_by_id,
+    user_onboarding,
+)
 from components.pine_utils import delete_user_data
 from components.redis_utils import delete_core
 from utils.logger_config import logger
@@ -62,6 +68,7 @@ async def signup(request: SignUpRequest):
                 "email": email
             }
         )
+        raise e
 
 
 @auth_router.post("/login")
@@ -94,6 +101,7 @@ async def login(request: LoginRequest):
                 "email": request.email
             }
         )
+        raise e
 
 @auth_router.get("/me")
 async def get_me(user: dict = Depends(get_current_user)):
@@ -149,7 +157,32 @@ async def delete_me(user_id: str = Depends(get_user_by_id)):
                 "error": e
             }
         )
-        return {
-            "success": False
+        
+        raise e
+    
+@auth_router.post("/onboard")
+async def onboard_user(
+    core_memory: dict = Body(...),
+    user_id: str = Depends(get_user_id)
+):
+    """Route to onboard user with initial core memory."""
+    logger.info(
+        "Onboarding user with core memory.",
+        extra={
+            "user_id": user_id,
+            "core_memory": core_memory
         }
+    )
+    try:
+        user_onboarding(core_memory=core_memory, user_id=user_id)
+        return {"success": True, "message": "User onboarded successfully"}
+    except Exception as e:
+        logger.exception(
+            "Error occurred during onboarding.",
+            extra={
+                "user_id": user_id,
+                "error": e
+            }
+        )
+        raise HTTPException(status_code=500, detail="Onboarding failed")
     

@@ -43,7 +43,7 @@ async def chat(data: ChatInput, user_id: str = Depends(get_user_id)):
                 user_id=user_id
             )
 
-        chat_history = data.chat_history[-20:]
+        chat_history = data.chat_history
 
         memoryagent = MemoryAgent(
             core_memory=core_memory,

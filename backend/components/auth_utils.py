@@ -81,3 +81,4 @@ def create_user_profile(email: str, password: str):
     )
 
     return str(user_id)
+

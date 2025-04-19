@@ -1,4 +1,5 @@
 from fastapi import APIRouter, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from routes.auth import auth_router
 from routes.bot import bot_router
@@ -9,6 +10,14 @@ app = FastAPI(
     title="Empathy-Bot Backend, By Pratham Paleriya",
     version="0.1.0",
     docs_url="/api/docs",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 route = APIRouter()

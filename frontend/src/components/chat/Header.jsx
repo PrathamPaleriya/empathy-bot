@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Tooltip } from 'primereact/tooltip';
+import { Flag, Info } from 'lucide-react';
 
 const Header = () => {
   return (
-    <div className="z-30 fixed flex items-center w-full h-fit bg-gradient-to-b from-[#9AE2FF]/50 to-[#9AE2FF]/0 px-3 py-5 backdrop-blur-xs md:backdrop-blur-none  md:px-10 md:py-8">
+    <div className="z-30 fixed flex items-center justify-between w-full h-fit bg-gradient-to-b from-[#9AE2FF]/50 to-[#9AE2FF]/0 px-3 py-5 backdrop-blur-xs md:backdrop-blur-none  md:px-10 md:py-8">
       <Tooltip target=".profile" />
       <Link
         to="/login"
@@ -14,7 +15,19 @@ const Header = () => {
       {/* <div className='w-full text-center text-white font-semibold h-full'>
             empathy-bot
         </div> */}
-      <div className="w-9" />
+      <Tooltip target=".report" />
+      <a
+        data-pr-tooltip="Report any issue."
+        href="www.google.com"
+        target="_blank"
+        data-pr-at="bottom-20 left+10"
+        className="report flex items-center gap-1 font-bold text-red-600 hover:text-red-700 cursor-pointer"
+      >
+        <div>
+          <Flag size={19} />
+        </div>
+        <div>Report</div>
+      </a>
     </div>
   );
 };
