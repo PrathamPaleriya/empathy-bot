@@ -6,7 +6,7 @@ const ChatInterface = ({ chatHistory, loading, alert, reference }) => {
       {chatHistory.map((msg, idx) => (
         <div
           key={idx}
-          className={`max-w-[70%] h-fit  rounded-2xl leading-snug whitespace-pre-wrap break-words break-all ${
+          className={`max-w-[70%] h-fit  rounded-2xl leading-snug whitespace-pre-wrap break-words ${
             msg.role === 'user'
               ? 'self-end bg-[#FDFBEE] text-caption shadow-lg px-4 py-3'
               : 'self-start'

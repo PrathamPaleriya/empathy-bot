@@ -46,7 +46,7 @@ const AuthSignup = () => {
       <button
         type="submit"
         disabled={loading}
-        className={`border hover:bg-blue-500 cursor-pointer disabled:cursor-progress text-white font-semibold ${alert ? 'bg-red-600' : 'bg-accent'} border-accent px-5 py-3 rounded-2xl w-full`}
+        className={`border hover:bg-blue-500 cursor-pointer disabled:cursor-progress text-white font-semibold ${alert ? 'bg-red-600 border-red-600 hover:bg-red-700' : 'bg-accent'} border-accent px-5 py-3 rounded-2xl w-full`}
       >
         {loading ? (
           <BarLoader className="my-2 mx-auto" color="white" />
