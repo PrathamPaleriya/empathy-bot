@@ -2,8 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Tooltip } from 'primereact/tooltip';
 import { Flag, Info } from 'lucide-react';
+import { useAppContext } from '../../context/MainContext';
 
 const Header = () => {
+  const {chatHistory} = useAppContext()
+
+  const mailBody = (
+    chatHistory?.map(msg => `${msg.role.toUpperCase()}: ${msg.content}`).join('\n\n') || ''
+  ) + '\n\nDescribe your issue here: ';
+
+  const mailHref = `mailto:paleriyapratham@gmail.com?subject=Empathy-bot report issue&body=${encodeURIComponent(mailBody)}`;
+
   return (
     <div className="z-30 fixed flex items-center justify-between w-full h-fit bg-gradient-to-b from-[#9AE2FF]/50 to-[#9AE2FF]/0 px-3 py-5 backdrop-blur-xs md:backdrop-blur-none  md:px-10 md:py-8">
       <Tooltip target=".profile" />
@@ -18,7 +27,7 @@ const Header = () => {
       <Tooltip target=".report" />
       <a
         data-pr-tooltip="Report any issue."
-        href="www.google.com"
+        href={mailHref}
         target="_blank"
         data-pr-at="bottom-20 left+10"
         className="report flex items-center gap-1 font-bold text-red-600 hover:text-red-700 cursor-pointer"
