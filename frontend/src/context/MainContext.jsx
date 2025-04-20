@@ -11,7 +11,7 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       await axios.get(`${API_BASE}/ping`);
-      console.log("ping successful");
+      console.log('ping successful');
     };
     fetchData();
   }, []);

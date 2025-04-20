@@ -7,13 +7,17 @@ import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
 import { AppProvider } from './context/MainContext';
 import Account from './pages/Account';
+import LandingPage from './pages/LandingPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="" element={<MainLayout />}>
-        <Route path="/chat" element={<Home />} />
-        <Route path="/account" element={<Account />} />
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/chat" element={<MainLayout />}>
+        <Route path="" element={<Home />} />
+      </Route>
+      <Route path="/account" element={<MainLayout />}>
+        <Route path="" element={<Account />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
