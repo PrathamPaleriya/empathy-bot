@@ -25,3 +25,5 @@ SKIP_FIELDS_LOGGER = (
     "lineno",
     "funcName",
 )
+
+SENDER_EMAIL = "paleriyapratham@gmail.com"

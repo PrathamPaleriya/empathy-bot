@@ -12,11 +12,13 @@ from components.auth_utils import (
 from components.mongo_utils import (
     delete_user_by_id,
     get_user_by_email,
+    get_user_by_id,
     user_onboarding,
 )
 from components.pine_utils import delete_user_data
 from components.redis_utils import delete_core
 from utils.logger_config import logger
+from utils.send_mail import send_delete_account_email, send_welcome_email
 
 auth_router = APIRouter()
 
@@ -57,6 +59,9 @@ async def signup(request: SignUpRequest):
             password=password
         )
         token = create_access_token(data={"sub": user_id})
+        send_welcome_email(
+            to=email
+        )
         return {"access_token": token, "token_type": "bearer", "user_id": user_id}
     
     except Exception as e:
@@ -127,6 +132,14 @@ async def delete_me(user_id: str = Depends(get_user_id)):
     )
 
     try:
+        user = get_user_by_id(
+            user_id=user_id
+        )
+
+        if user:
+            mail = user["profile"]["email"]
+            send_delete_account_email(to=mail)
+
         delete_user_by_id(
             user_id=user_id
         )

@@ -47,7 +47,7 @@ const Account = () => {
   };
 
   const handleFeedback = () => {
-    const mailtoLink = `mailto:paleryapratham@gmail.com?subject=Empathybot feedback`;
+    const mailtoLink = `mailto:paleriyapratham@gmail.com?subject=Empathybot feedback`;
     window.location.href = mailtoLink;
   };
 
