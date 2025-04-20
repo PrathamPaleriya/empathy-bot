@@ -50,12 +50,13 @@ const Home = () => {
   }, [chatHistory, loading]);
 
   return (
-    <div className="relative h-screen max-h-screen w-full">
-      <div className="absolute bg-[#9AE2FF]/60 w-full aspect-square rounded-full -translate-y-[20%] blur-[100px]  md:-translate-y-[70%] md:blur-[200px]" />
+    <div className="relative h-[100svh] w-full flex flex-col">
+      <div className="absolute bg-[#9AE2FF]/60 w-full aspect-square rounded-full -translate-y-[20%] blur-[100px] md:-translate-y-[70%] md:blur-[200px]" />
 
-      <div className="z-20 relative">
-        <div className="flex flex-col min-h-screen max-h-screen w-full">
-          <div className="flex-1 w-full overflow-y-auto py-24">
+      <div className="z-20 relative flex flex-col h-full">
+        {/* Chat content area */}
+        <div className="flex-1 overflow-y-auto w-full">
+          <div className="py-24">
             <PaddingMarging>
               {chatHistory.length >= 1 ? (
                 <ChatInterface
@@ -71,19 +72,15 @@ const Home = () => {
               )}
             </PaddingMarging>
           </div>
+        </div>
 
-          <div className="bg-bg/20 w-full md:w-[85%] lg:w-[70%] px-3 md:px-7 lg:px-20 pt-8 md:pt-10 pb-13 md:pb-14 mx-auto">
-            <ChatInput
-              handleSend={handleSend}
-              setInput={setInput}
-              input={input}
-              loading={loading}
-            />
-          </div>
+        {/* Chat input fixed at bottom */}
+        <div className="bg-bg/20 my-5 md:mb-10 w-full md:w-[85%] lg:w-[70%] px-3 mx-auto pb-4">
+          <ChatInput handleSend={handleSend} setInput={setInput} input={input} loading={loading} />
         </div>
       </div>
 
-      <div className="absolute bottom-4 md:bottom-5 text-sm text-center w-full font-semibold text-placeholder">
+      <div className="absolute bottom-3 md:bottom-4 text-xs md:text-sm text-center w-full font-semibold text-placeholder">
         empathy-bot
       </div>
     </div>

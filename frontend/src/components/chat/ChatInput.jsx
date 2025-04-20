@@ -12,7 +12,7 @@ const ChatInput = ({ handleSend, input, setInput, loading }) => {
 
   return (
     <form
-      className="flex w-full items-center justify-center gap-2 md:gap-3 text-heading"
+      className="flex w-full h-full items-center justify-center gap-2 md:gap-3 text-heading text-sm md:text-base"
       onSubmit={handleSend}
     >
       <textarea

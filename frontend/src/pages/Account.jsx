@@ -56,11 +56,13 @@ const Account = () => {
   }, []);
 
   return (
-    <div className="z-30 mt-30">
+    <div className="z-30 mt-30 min-h-[100svh]">
       <PaddingMarging>
         <div className="flex items-center justify-between">
-          <div className="text-3xl font-semibold text-secondary">Account Settings</div>
-          <div className="flex gap-3">
+          <div className="text-xl md:text-3xl font-semibold text-secondary">
+            Account <br className="block md:hidden" /> Settings
+          </div>
+          <div className="md:flex gap-3 hidden">
             <Button
               className="p-3 text-white bg-red-500 rounded-full hover:bg-red-600"
               tooltip="Delete Account"
@@ -83,6 +85,26 @@ const Account = () => {
               icon={<MessageSquareHeart />}
             />
           </div>
+          <div className="flex gap-3 md:hidden">
+            <button
+              className="p-3 aspect-square text-white bg-red-500 rounded-full hover:bg-red-600"
+              onClick={handleDeleteAccount}
+            >
+              <Trash className="size-4" />
+            </button>
+            <Button
+              className="p-3 text-white bg-blue-500 rounded-full hover:bg-blue-600"
+              onClick={handleLogout}
+            >
+              <LogOut className="size-4" />
+            </Button>
+            <Button
+              className="p-3 text-white bg-black rounded-full hover:bg-gray-700 transition-colors"
+              onClick={handleFeedback}
+            >
+              <MessageSquareHeart className="size-4" />
+            </Button>
+          </div>
         </div>
 
         <div className="w-full h-[2px] bg-placeholder rounded-full my-5" />
@@ -94,13 +116,17 @@ const Account = () => {
           loading && <div>Loading ... </div>
         )}
         <div className="w-full h-[2px] bg-placeholder rounded-full my-5" />
-        <div className="flex flex-col md:flex-row gap-2 justify-between">
+        <div className="flex flex-col md:flex-row gap-2 justify-between text-xs md:text-sm lg:text-base">
           <div className="flex gap-2 md:gap-3 flex-wrap">
             <div>🔴 - Delete Account</div>
             <div>🔵 - Logout</div>
             <div>⚫ - Feedback</div>
           </div>
-          <a href="https://pratham.athams.com/" target="_blank" className="hover:underline">
+          <a
+            href="https://pratham.athams.com/"
+            target="_blank"
+            className="hover:underline text-base"
+          >
             Made by Pratham.
           </a>
         </div>

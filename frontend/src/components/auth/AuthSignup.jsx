@@ -26,14 +26,17 @@ const AuthSignup = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full font-manrope">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-3 w-full font-manrope text-sm md:text-base"
+    >
       <input
         type="email"
         value={email}
         onChange={e => setEmail(e.target.value)}
         placeholder="Your email"
         required
-        className="bg-white border border-placeholder px-5 py-3 rounded-2xl w-full"
+        className="bg-white border border-placeholder px-4 py-3 md:px-5 md:py-3 rounded-2xl w-full"
       />
       <input
         type="password"
@@ -41,12 +44,12 @@ const AuthSignup = () => {
         value={pass}
         onChange={e => setPass(e.target.value)}
         required
-        className="bg-white border border-placeholder px-5 py-3 rounded-2xl w-full"
+        className="bg-white border border-placeholder px-4 py-3 md:px-5 md:py-3 rounded-2xl w-full"
       />
       <button
         type="submit"
         disabled={loading}
-        className={`border hover:bg-blue-500 cursor-pointer disabled:cursor-progress text-white font-semibold ${alert ? 'bg-red-600 border-red-600 hover:bg-red-700' : 'bg-accent'} border-accent px-5 py-3 rounded-2xl w-full`}
+        className={`border hover:bg-blue-500 cursor-pointer disabled:cursor-progress text-white font-semibold ${alert ? 'bg-red-600 border-red-600 hover:bg-red-700' : 'bg-accent'} border-accent px-4 py-3 md:px-5 md:py-3 rounded-2xl w-full`}
       >
         {loading ? (
           <BarLoader className="my-2 mx-auto" color="white" />
