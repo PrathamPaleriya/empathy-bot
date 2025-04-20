@@ -26,7 +26,6 @@ const OnBoardingInput = () => {
   const [alert, setAlert] = useState(null);
   const { onboard } = useAuthAPI();
   const navigate = useNavigate();
-  
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -34,17 +33,17 @@ const OnBoardingInput = () => {
     setAlert(null);
 
     const coreMemory = {
-      "user_core" : {
-        "name" : name,
-        "country" : country,
-        "age": age,
-        "gender": gender
+      user_core: {
+        name: name,
+        country: country,
+        age: age,
+        gender: gender,
       },
-      "assistant_core" : {
-        "age": vibeAge,
-        "language": lang
-      }
-    }
+      assistant_core: {
+        age: vibeAge,
+        language: lang,
+      },
+    };
 
     const res = await onboard(coreMemory);
     if (res.success) {

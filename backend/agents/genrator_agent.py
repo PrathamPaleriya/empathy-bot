@@ -83,7 +83,7 @@ class GenratorAgent:
                 "role": "system",
                 "content": retrival_agent_prompt_template.format(
                     core_memory = self.core_memory,
-                    conversation_history = self.chat_history
+                    conversation_history = self.chat_history[-6:]
                 )
             },
             {

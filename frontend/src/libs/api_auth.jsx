@@ -85,6 +85,28 @@ const useAuthAPI = () => {
     }
   };
 
+  const deleteAccount = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await axios.delete(`${API_BASE}/api/v0/auth/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (res.data.success) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('token_expiry');
+        setUser(null);
+      }
+
+      return { success: res.data.success };
+    } catch (err) {
+      console.error(err);
+      return { success: false, error: err?.response?.data?.detail || 'Account deletion failed' };
+    }
+  };
+
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('token_expiry');
@@ -97,6 +119,7 @@ const useAuthAPI = () => {
     getMe,
     logout,
     onboard,
+    deleteAccount,
     token: localStorage.getItem('token'),
     isTokenValid,
   };

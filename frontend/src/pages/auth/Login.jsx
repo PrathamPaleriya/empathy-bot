@@ -14,7 +14,12 @@ const Login = () => {
       </div>
       <div className="font-manrope text-center w-[95%] md:w-[80%] lg:w-[60%] pt-20 font-semibold text-subheading">
         I'm all ears! Your feedback means the world to me, help me make this better! &nbsp;
-        <Link className="text-blue-500 hover:underline">Feedback Please</Link>
+        <a
+          href="mailto:paleryapratham@gmail.com?subject=Empathybot feedback"
+          className="text-blue-500 hover:underline"
+        >
+          Feedback Please
+        </a>
       </div>
       <div className="fixed bottom-10 font-semibold text-placeholder text-sm">empathy-bot</div>
     </div>

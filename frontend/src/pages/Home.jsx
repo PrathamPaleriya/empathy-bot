@@ -14,13 +14,13 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(null);
   const bottomRef = useRef(null);
-  const {isTokenValid} = useAuthAPI();
-  const {chat} = useChatApi();
+  const { isTokenValid } = useAuthAPI();
+  const { chat } = useChatApi();
   const navigate = useNavigate();
 
-  const handleSend = async (e) => {
+  const handleSend = async e => {
     e.preventDefault();
-    setAlert(null)
+    setAlert(null);
     if (!input.trim()) return;
 
     const newHistory = [...chatHistory, { role: 'user', content: input }];
@@ -31,7 +31,7 @@ const Home = () => {
 
     const resp = await chat(input);
     if (resp.success) {
-      setChatHistory(prev => [...prev, { role: 'assistant', content: resp.response }]); 
+      setChatHistory(prev => [...prev, { role: 'assistant', content: resp.response }]);
     } else {
       setAlert(resp.error);
     }
@@ -40,10 +40,10 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if(!isTokenValid()) {
-      navigate("/login")
+    if (!isTokenValid()) {
+      navigate('/login');
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });

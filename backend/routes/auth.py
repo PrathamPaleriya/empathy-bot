@@ -12,7 +12,6 @@ from components.auth_utils import (
 from components.mongo_utils import (
     delete_user_by_id,
     get_user_by_email,
-    get_user_by_id,
     user_onboarding,
 )
 from components.pine_utils import delete_user_data
@@ -118,7 +117,7 @@ async def get_me(user: dict = Depends(get_current_user)):
 
 
 @auth_router.delete("/me")
-async def delete_me(user_id: str = Depends(get_user_by_id)):
+async def delete_me(user_id: str = Depends(get_user_id)):
     """Route to delete account and all the data."""
     logger.info(
         "User request to Delete Account.",

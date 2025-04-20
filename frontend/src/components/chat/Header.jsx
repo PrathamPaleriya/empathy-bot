@@ -1,42 +1,50 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Tooltip } from 'primereact/tooltip';
-import { Flag, Info } from 'lucide-react';
+import { Flag } from 'lucide-react';
 import { useAppContext } from '../../context/MainContext';
 
 const Header = () => {
-  const {chatHistory} = useAppContext()
+  const { chatHistory } = useAppContext();
+  const location = useLocation();
 
-  const mailBody = (
-    chatHistory?.map(msg => `${msg.role.toUpperCase()}: ${msg.content}`).join('\n\n') || ''
-  ) + '\n\nDescribe your issue here: ';
+  const mailBody =
+    (chatHistory?.map(msg => `${msg.role.toUpperCase()}: ${msg.content}`).join('\n\n') || '') +
+    '\n\nDescribe your issue here: ';
 
   const mailHref = `mailto:paleriyapratham@gmail.com?subject=Empathy-bot report issue&body=${encodeURIComponent(mailBody)}`;
 
+  const isAtAccountPage = location.pathname === '/account';
+  const buttonLink = isAtAccountPage ? '/chat' : '/account';
+  const tooltipText = isAtAccountPage ? 'Back to Home' : 'Account settings';
+
   return (
-    <div className="z-30 fixed flex items-center justify-between w-full h-fit bg-gradient-to-b from-[#9AE2FF]/50 to-[#9AE2FF]/0 px-3 py-5 backdrop-blur-xs md:backdrop-blur-none  md:px-10 md:py-8">
-      <Tooltip target=".profile" />
-      <Link
-        to="/login"
-        data-pr-tooltip="Account Settings"
-        className="profile w-9 md:w-10 aspect-square rounded-full bg-gradient-to-tr from-primary via-accent to-red-400 animate-gradient"
-      />
-      {/* <div className='w-full text-center text-white font-semibold h-full'>
+    <div>
+      <div className="z-30 fixed flex items-center justify-between w-full h-fit bg-gradient-to-b from-[#9AE2FF]/50 to-[#9AE2FF]/0 px-3 py-5 backdrop-blur-xs md:backdrop-blur-none  md:px-10 md:py-8">
+        <Tooltip target=".profile" />
+        <Link
+          to={buttonLink}
+          data-pr-tooltip={tooltipText}
+          data-pr-at="bottom-20 left+10"
+          className="profile w-9 md:w-10 aspect-square rounded-full bg-gradient-to-tr from-primary via-accent to-red-400 animate-gradient"
+        />
+        {/* <div className='w-full text-center text-white font-semibold h-full'>
             empathy-bot
         </div> */}
-      <Tooltip target=".report" />
-      <a
-        data-pr-tooltip="Report any issue."
-        href={mailHref}
-        target="_blank"
-        data-pr-at="bottom-20 left+10"
-        className="report flex items-center gap-1 font-bold text-red-600 hover:text-red-700 cursor-pointer"
-      >
-        <div>
-          <Flag size={19} />
-        </div>
-        <div>Report</div>
-      </a>
+        <Tooltip target=".report" />
+        <a
+          data-pr-tooltip="Report any issue."
+          href={mailHref}
+          target="_blank"
+          data-pr-at="bottom-20 left+10"
+          className="report flex items-center gap-1 font-bold text-red-600 hover:text-red-700 cursor-pointer"
+        >
+          <div>
+            <Flag size={19} />
+          </div>
+          <div>Report</div>
+        </a>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 
 const ChatInterface = ({ chatHistory, loading, alert, reference }) => {
   return (
@@ -12,7 +13,7 @@ const ChatInterface = ({ chatHistory, loading, alert, reference }) => {
               : 'self-start'
           }`}
         >
-          {msg.content}
+          <ReactMarkdown>{msg.content}</ReactMarkdown>
         </div>
       ))}
 
