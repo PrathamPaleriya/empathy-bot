@@ -38,7 +38,7 @@ class SignUpRequest(BaseModel):
 @auth_router.post("/signup")
 async def signup(request: SignUpRequest):
     """Signup Route."""
-    email = request.email
+    email = request.email.lower()
     password = request.password
     logger.info(
         "Signup request",
@@ -82,7 +82,7 @@ async def login(request: LoginRequest):
     )
     try:
         user = get_user_by_email(
-            email=request.email
+            email=request.email.lower()
         )
         if user and verify_password(
             request.password,
