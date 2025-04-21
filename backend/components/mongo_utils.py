@@ -162,7 +162,7 @@ def verify_reset_token(token: str):
         record = db.reset_tokens.find_one({"token": hashed})
         if not record:
             return None
-        if record["used"] or record["expires_at"] < datetime.now(UTC):
+        if record["used"] or record["expires_at"] < datetime.now(record["expires_at"].tzinfo):
             return None
         return record
     except Exception as e:
