@@ -226,3 +226,83 @@ def send_delete_account_email(to: str):
     msg.add_alternative(html_body, subtype="html")
 
     send_mail(msg, to)
+
+
+def send_reset_password_email(to: str, reset_link: str):
+    """Function to send a reset password email with a link."""
+    subject = "Reset Your EmpathyBot Password"
+
+    plain_text_body = f"""
+    Hey there,
+
+    It looks like you requested a password reset for your EmpathyBot account. No worries — it happens!
+
+    Just click the link below to reset your password. This link will expire in 30 minutes for your security.
+
+    Reset your password: {reset_link}
+
+    If you didn't request this, you can safely ignore this email.
+
+    Take care 💛  
+    — Pratham  
+    Just a guy who wants tech to feel more human
+    """ #noqa
+
+    html_body = f"""
+    <html lang="en" style="margin:0;padding:0;background-color:#fefefe;font-family:sans-serif;">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Reset Your Password - EmpathyBot</title>
+    </head>
+    <body style="background-color:#fefefe;padding:40px 0;">
+        <table width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+            <td align="center">
+            <table width="100%" max-width="600px" style="background-color:#ffffff;border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,0.05);padding:40px;">
+                <tr>
+                <td align="center" style="padding-bottom:24px;">
+                    <h1 style="font-size:28px;margin:0;color:#222;">Reset your password 🔐</h1>
+                </td>
+                </tr>
+                <tr>
+                <td style="font-size:16px;line-height:1.7;color:#333;padding-bottom:20px;">
+                    Hey there,<br />
+                    You requested to reset your EmpathyBot password. Click the button below to set a new one.
+                </td>
+                </tr>
+                <tr>
+                <td align="center" style="padding: 20px 0;">
+                    <a href="{reset_link}" style="background-color:#4f46e5;color:#fff;text-decoration:none;padding:12px 24px;border-radius:8px;display:inline-block;font-weight:bold;">
+                        Reset Password
+                    </a>
+                </td>
+                </tr>
+                <tr>
+                <td style="font-size:14px;line-height:1.5;color:#777;padding-bottom:40px;text-align:center;">
+                    This link will expire in 30 minutes. If you didn't request this, you can safely ignore this email.
+                </td>
+                </tr>
+                <tr>
+                <td style="font-size:16px;line-height:1.7;color:#333;padding-bottom:40px;">
+                    Wishing you all the best 💛<br /><br />
+                    — Pratham<br />
+                    <span style="font-size:14px;color:#777;">Just a guy who wants tech to feel more human</span>
+                </td>
+                </tr>
+            </table>
+            </td>
+        </tr>
+        </table>
+    </body>
+    </html>
+    """ #noqa
+
+    msg = EmailMessage()
+    msg["From"] = SENDER_EMAIL
+    msg["To"] = to
+    msg["Subject"] = subject
+
+    msg.set_content(plain_text_body)
+    msg.add_alternative(html_body, subtype="html")
+
+    send_mail(msg, to)

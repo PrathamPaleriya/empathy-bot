@@ -1,8 +1,9 @@
-from datetime import datetime
+from datetime import UTC, datetime, timedelta
 
 from bson import ObjectId
 from pymongo import MongoClient
 
+from components.token_utils import hash_token
 from utils.load_env import mongodb_collection, mongodb_db, mongodb_uri
 
 mongo_client = MongoClient(
@@ -11,6 +12,7 @@ mongo_client = MongoClient(
 
 db = mongo_client[mongodb_db]
 collection = db[mongodb_collection]
+reset_tokens = db["reset_tokens"]
 
 def create_profile(profile: dict, memory: dict = {}):
     """Mongo Util function to create a user profile.
@@ -124,5 +126,52 @@ def delete_user_by_id(user_id:str):
         )
 
         return True
+    except Exception as e:
+        raise e
+    
+def update_passowrd(user_id:str, hashed_password):
+    """Mongodb Uitls to update the user password."""
+    try:
+        collection.update_one(
+            {"_id": ObjectId(user_id)},
+            {"$set": {"profile.password": hashed_password}}
+        )
+    except Exception as e:
+        raise e
+    
+
+# reset tokens utils
+def store_reset_token(user_id: str, token: str):
+    """Mongo db utils to store reset token."""
+    try:
+        hashed = hash_token(token)
+        db.reset_tokens.insert_one({
+            "user_id": user_id,
+            "token": hashed,
+            "created_at": datetime.now(UTC),
+            "expires_at": datetime.now(UTC) + timedelta(minutes=30),
+            "used": False
+        })
+    except Exception as e:
+        raise e
+
+def verify_reset_token(token: str):
+    """Mongo db utils to verify reset token."""
+    try:
+        hashed = hash_token(token)
+        record = db.reset_tokens.find_one({"token": hashed})
+        if not record:
+            return None
+        if record["used"] or record["expires_at"] < datetime.now(UTC):
+            return None
+        return record
+    except Exception as e:
+        raise e
+
+def mark_token_used(token: str):
+    """Mongo db utils to mark reset token true."""
+    try:
+        hashed = hash_token(token)
+        db.reset_tokens.update_one({"token": hashed}, {"$set": {"used": True}})
     except Exception as e:
         raise e

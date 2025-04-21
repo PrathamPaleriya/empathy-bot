@@ -5,7 +5,12 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 
-from components.mongo_utils import create_profile, get_user_by_email, get_user_by_id
+from components.mongo_utils import (
+    create_profile,
+    get_user_by_email,
+    get_user_by_id,
+    update_passowrd,
+)
 from utils.load_env import algorithm, secret_key
 
 SECRET_KEY = secret_key
@@ -82,3 +87,15 @@ def create_user_profile(email: str, password: str):
 
     return str(user_id)
 
+def update_user_password(user_id: str, new_password: str):
+    """Auth util to update user's password."""
+    try:
+        hashed_password = get_password_hash(new_password)
+        update_passowrd(
+            user_id=user_id,
+            hashed_password=hashed_password
+        )
+
+        return True
+    except Exception:
+        raise HTTPException(status_code=500, detail="Failed to update password")
