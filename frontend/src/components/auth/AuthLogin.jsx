@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BarLoader } from 'react-spinners';
 import useAuthAPI from '../../libs/api_auth';
+import { motion } from 'framer-motion';
 
 const AuthLogin = () => {
   const [email, setEmail] = useState('');
@@ -48,8 +49,11 @@ const AuthLogin = () => {
         autoComplete="current-password"
         className="bg-white border border-placeholder px-4 py-3 md:px-5 md:py-3 rounded-2xl w-full"
       />
-      <button
+      <motion.button
         type="submit"
+        whileHover={{}}
+        whileTap={{ scale: 0.95 }}
+        transition={{ type: 'spring' }}
         disabled={loading}
         className={`border hover:bg-blue-500 cursor-pointer disabled:cursor-progress text-white font-semibold ${alert ? 'bg-red-600 border-red-600 hover:bg-red-700' : 'bg-accent'} border-accent px-4 py-3 md:px-5 md:py-3 rounded-2xl w-full`}
       >
@@ -60,7 +64,7 @@ const AuthLogin = () => {
         ) : (
           <div>Continue</div>
         )}
-      </button>
+      </motion.button>
       <Link to="/signup" className="hover:text-accent font-semibold text-center">
         New here? create an account.
       </Link>

@@ -13,10 +13,10 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-      if (isTokenValid()) {
-        navigate('/chat');
-      }
-    }, []);
+    if (isTokenValid()) {
+      navigate('/chat');
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-bg text-[#4f4f4f] font-manrope">

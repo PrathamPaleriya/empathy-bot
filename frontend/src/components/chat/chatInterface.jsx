@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import { BeatLoader } from 'react-spinners';
+import BlurIn from '../animation/BlurIn';
+import TextFade from '../animation/TextFade';
+import LineBlurIn from '../animation/LineBlurIn';
 
 const ChatInterface = ({ chatHistory, loading, alert, reference }) => {
   return (
@@ -13,11 +17,20 @@ const ChatInterface = ({ chatHistory, loading, alert, reference }) => {
               : 'self-start'
           }`}
         >
-          <ReactMarkdown>{msg.content}</ReactMarkdown>
+          {msg.role === 'user' ? (
+            <ReactMarkdown>{msg.content}</ReactMarkdown>
+          ) : (
+            <LineBlurIn duration={0.4} text={msg.content} />
+          )}
         </div>
       ))}
 
-      {loading && <div className="self-start">typing...</div>}
+      {loading && (
+        <div className="self-start flex items-center gap-1">
+          <div>Typing</div>
+          <BeatLoader size={4} className="pt-2" />
+        </div>
+      )}
       {alert && <div className="self-start text-red-600">{alert}</div>}
 
       <div ref={reference} />

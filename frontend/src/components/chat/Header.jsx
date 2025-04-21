@@ -3,9 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 import { Tooltip } from 'primereact/tooltip';
 import { Flag } from 'lucide-react';
 import { useAppContext } from '../../context/MainContext';
+import { motion } from 'framer-motion';
 
 const Header = () => {
   const { chatHistory } = useAppContext();
+  const MotionLink = motion(Link);
   const location = useLocation();
 
   const mailBody =
@@ -20,14 +22,18 @@ const Header = () => {
 
   return (
     <div>
-      <div className=" z-30 hidden fixed md:flex items-center justify-between w-full h-fit bg-gradient-to-b from-[#9AE2FF]/50 to-[#9AE2FF]/0 px-5 py-5 backdrop-blur-xs md:backdrop-blur-none  md:px-10 md:py-8">
+      <div className="z-30 hidden fixed md:flex items-center justify-between w-full h-fit bg-gradient-to-b from-[#9AE2FF]/50 to-[#9AE2FF]/0 px-5 py-5 backdrop-blur-xs md:backdrop-blur-none  md:px-10 md:py-8">
         <Tooltip target=".profile" />
-        <Link
-          to={buttonLink}
-          data-pr-tooltip={tooltipText}
-          data-pr-at="bottom-20 left+10"
-          className="profile w-9 md:w-10 aspect-square rounded-full bg-gradient-to-tr from-primary via-accent to-red-400 animate-gradient"
-        />
+        <Link to={buttonLink}>
+          <motion.div
+            whileHover={{}}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: 'spring' }}
+            data-pr-tooltip={tooltipText}
+            data-pr-at="bottom-20 left+10"
+            className="profile w-9 md:w-10 aspect-square rounded-full bg-gradient-to-tr from-primary via-accent to-red-400 animate-gradient"
+          />
+        </Link>
         {/* <div className='w-full text-center text-white font-semibold h-full'>
             empathy-bot
         </div> */}
@@ -47,10 +53,14 @@ const Header = () => {
       </div>
 
       <div className="z-30 fixed flex md:hidden items-center justify-between w-full h-fit bg-gradient-to-b from-[#9AE2FF]/50 to-[#9AE2FF]/0 px-5 py-5 backdrop-blur-xs md:backdrop-blur-none  md:px-10 md:py-8">
-        <Link
-          to={buttonLink}
-          className="profile w-9 md:w-10 aspect-square rounded-full bg-gradient-to-tr from-primary via-accent to-red-400 animate-gradient"
-        />
+        <Link to={buttonLink}>
+          <motion.div
+            whileHover={{}}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: 'spring' }}
+            className="profile w-9 md:w-10 aspect-square rounded-full bg-gradient-to-tr from-primary via-accent to-red-400 animate-gradient"
+          />
+        </Link>
         {/* <div className='w-full text-center text-white font-semibold h-full'>
             empathy-bot
         </div> */}

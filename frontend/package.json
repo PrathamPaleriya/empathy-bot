@@ -12,6 +12,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.4",
     "axios": "^1.8.4",
+    "framer-motion": "^12.7.4",
     "imagekitio-react": "^4.3.0",
     "lucide-react": "^0.488.0",
     "primereact": "^10.9.4",

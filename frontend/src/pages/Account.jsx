@@ -5,11 +5,12 @@ import useAuthAPI from '../libs/api_auth';
 import { LogOut, MessageSquareHeart, Trash } from 'lucide-react';
 import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router-dom';
+import { BarLoader } from 'react-spinners';
 
 const Account = () => {
   const { getMe, logout, deleteAccount } = useAuthAPI();
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [alert, setAlert] = useState(false);
   const navigate = useNavigate();
 
@@ -56,7 +57,12 @@ const Account = () => {
   }, []);
 
   return (
-    <div className="z-30 mt-30 min-h-[100svh]">
+    <div className="z-30 mt-28 min-h-[100svh]">
+      {loading && (
+        <div className="flex w-full justify-center">
+          <BarLoader />
+        </div>
+      )}
       <PaddingMarging>
         <div className="flex items-center justify-between">
           <div className="text-xl md:text-3xl font-semibold text-secondary">

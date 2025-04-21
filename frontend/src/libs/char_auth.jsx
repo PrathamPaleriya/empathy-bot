@@ -24,7 +24,7 @@ const useChatApi = () => {
       console.error(err);
       return {
         success: false,
-        error: err?.response?.data?.detail || 'Unexcpected Error occured please retry or refresh.',
+        error: 'Unexcpected error occured please retry or refresh.',
       };
     }
   };

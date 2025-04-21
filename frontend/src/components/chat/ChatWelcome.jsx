@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import BlurIn from '../animation/BlurIn';
+import TextFade from '../animation/TextFade';
 
 const ChatWelcome = () => {
   const headings = [
@@ -27,7 +29,7 @@ const ChatWelcome = () => {
 
   return (
     <div className="text-center text-xl md:text-2xl lg:text-3xl font-semibold text-secondary">
-      {heading}
+      <BlurIn duration={0.5}>{heading}</BlurIn>
     </div>
   );
 };
