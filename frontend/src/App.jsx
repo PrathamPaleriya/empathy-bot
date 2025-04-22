@@ -12,7 +12,7 @@ import ForgotPass from './pages/auth/ForgotPass';
 import 'primereact/resources/themes/viva-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import ResetPass from './pages/auth/ResetPass';
-import NotFound from './pages/notFound';
+import NotFound from './pages/NotFound';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
