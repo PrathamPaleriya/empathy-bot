@@ -8,6 +8,11 @@ import Home from './pages/Home';
 import { AppProvider } from './context/MainContext';
 import Account from './pages/Account';
 import LandingPage from './pages/LandingPage';
+import ForgotPass from './pages/auth/ForgotPass';
+import 'primereact/resources/themes/viva-light/theme.css';
+import 'primereact/resources/primereact.min.css';
+import ResetPass from './pages/auth/ResetPass';
+import NotFound from './pages/notFound';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +27,9 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/onboarding" element={<OnBoarding />} />
+      <Route path="/forgot-password" element={<ForgotPass />} />
+      <Route path="/reset-password" element={<ResetPass />} />
+      <Route path="*" element={<NotFound />} />
     </>
   )
 );

@@ -49,6 +49,9 @@ const AuthLogin = () => {
         autoComplete="current-password"
         className="bg-white border border-placeholder px-4 py-3 md:px-5 md:py-3 rounded-2xl w-full"
       />
+      <Link to="/forgot-password" className="text-end hover:text-blue-600">
+        Forgot Password?
+      </Link>
       <motion.button
         type="submit"
         whileHover={{}}

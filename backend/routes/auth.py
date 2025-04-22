@@ -78,6 +78,9 @@ async def signup(request: SignUpRequest):
         )
         return {"access_token": token, "token_type": "bearer", "user_id": user_id}
     
+    except HTTPException as http_exc:
+        raise http_exc
+
     except Exception as e:
         logger.exception(
             "Error happened in in signup route.",
@@ -111,6 +114,10 @@ async def login(request: LoginRequest):
             return {"access_token": token, "token_type": "bearer"}
         else:
             raise HTTPException(status_code=401, detail="Invalid credentials")
+        
+    except HTTPException as http_exc:
+        raise http_exc
+    
     except Exception as e:
         logger.exception(
             "Error happened in in login route.",
@@ -175,6 +182,9 @@ async def delete_me(user_id: str = Depends(get_user_id)):
             "success": True
         }
     
+    except HTTPException as http_exc:
+        raise http_exc
+    
     except Exception as e:
         logger.exception(
             "Error happend during deleting user's account.",
@@ -202,6 +212,10 @@ async def onboard_user(
     try:
         user_onboarding(core_memory=core_memory, user_id=user_id)
         return {"success": True, "message": "User onboarded successfully"}
+    
+    except HTTPException as http_exc:
+        raise http_exc
+
     except Exception as e:
         logger.exception(
             "Error occurred during onboarding.",
@@ -239,6 +253,9 @@ async def forgot_password(request: ForgotPasswordRequest):
 
         return {"success": True, "message": "Reset link sent to email"}
     
+    except HTTPException as http_exc:
+        raise http_exc
+    
     except Exception as e:
         logger.exception(
             "Error occurred during forget password.",
@@ -265,6 +282,10 @@ async def reset_password(request: ResetPasswordRequest):
         mark_token_used(request.token)
 
         return {"success": True, "message": "Password reset successful"}
+    
+    except HTTPException as http_exc:
+        raise http_exc
+
     except Exception as e:
         logger.exception(
             "Error occurred during reset password.",

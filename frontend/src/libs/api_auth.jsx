@@ -107,6 +107,27 @@ const useAuthAPI = () => {
     }
   };
 
+  const forgotPassword = async email => {
+    try {
+      const res = await axios.post(`${API_BASE}/api/v0/auth/forgot-password`, { email });
+      return { success: true, message: res.data.message };
+    } catch (err) {
+      return { success: false, error: err?.response?.data?.detail || 'Failed to send reset link' };
+    }
+  };
+
+  const resetPassword = async (token, new_password) => {
+    try {
+      const res = await axios.post(`${API_BASE}/api/v0/auth/reset-password`, {
+        token,
+        new_password,
+      });
+      return { success: true, message: res.data.message };
+    } catch (err) {
+      return { success: false, error: err?.response?.data?.detail || 'Password reset failed' };
+    }
+  };
+
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('token_expiry');
@@ -120,6 +141,8 @@ const useAuthAPI = () => {
     logout,
     onboard,
     deleteAccount,
+    forgotPassword,
+    resetPassword,
     token: localStorage.getItem('token'),
     isTokenValid,
   };
