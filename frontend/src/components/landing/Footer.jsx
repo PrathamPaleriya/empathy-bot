@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Footer = () => {
   return (
@@ -13,10 +14,15 @@ const Footer = () => {
             Experience the comfort of being truly understood, whenever you need it.
           </p>
           <Link to={'/signup'}>
-            <button className="bg-[#57b4ba] hover:bg-[#015551]  text-white text-lg py-4 px-10 rounded-full transition-colors shadow-md flex items-center mx-auto">
+            <motion.button
+              whileHover={{}}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: 'spring' }}
+              className="bg-[#57b4ba] hover:bg-[#015551]  text-white text-lg py-4 px-10 rounded-full transition-colors shadow-md flex items-center mx-auto"
+            >
               Try EmpathyBot Free
               <ArrowRight className="ml-2" size={20} />
-            </button>
+            </motion.button>
           </Link>
         </div>
 
@@ -26,11 +32,14 @@ const Footer = () => {
               <span className="text-[#015551] font-dm-sans font-bold text-xl">EmpathyBot</span>
             </div>
             <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
-              <a href="#" className="text-[#4f4f4f] hover:text-[#57b4ba] transition-colors">
+              <a href="policy" className="text-[#4f4f4f] hover:text-[#57b4ba] transition-colors">
                 Privacy Policy
               </a>
-              <a href="#" className="text-[#4f4f4f] hover:text-[#57b4ba] transition-colors">
-                Terms of Service
+              <a
+                href="mailto:paleriyapratham@gmail.com?subject=EmpathyBot%20Feedback%20and%20Support"
+                class="text-[#4f4f4f] hover:text-[#57b4ba] transition-colors"
+              >
+                Contact Us
               </a>
               <a
                 href="https://github.com/PrathamPaleriya/empathy-bot"
@@ -50,7 +59,7 @@ const Footer = () => {
           </div>
           <div className="flex items-center flex-col md:flex-row md:justify-between">
             <div className="text-center mt-8 text-[#7c7c7c] text-sm">
-              &copy; {new Date().getFullYear()} EmpathyBot. All rights reserved.
+              &copy; {new Date().getFullYear()} Athams. All rights reserved.
             </div>
             <a
               href="https://pratham.athams.com/"

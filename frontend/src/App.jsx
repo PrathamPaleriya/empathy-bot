@@ -13,6 +13,7 @@ import 'primereact/resources/themes/viva-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import ResetPass from './pages/auth/ResetPass';
 import NotFound from './pages/NotFound';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
       <Route path="/onboarding" element={<OnBoarding />} />
       <Route path="/forgot-password" element={<ForgotPass />} />
       <Route path="/reset-password" element={<ResetPass />} />
+      <Route path="/policy" element={<PrivacyPolicy />} />
       <Route path="*" element={<NotFound />} />
     </>
   )
