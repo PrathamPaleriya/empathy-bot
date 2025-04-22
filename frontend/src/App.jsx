@@ -14,6 +14,7 @@ import 'primereact/resources/primereact.min.css';
 import ResetPass from './pages/auth/ResetPass';
 import NotFound from './pages/NotFound';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import { Analytics } from '@vercel/analytics/react';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,6 +41,7 @@ function App() {
   return (
     <>
       <AppProvider>
+        <Analytics/>
         <RouterProvider router={router} />
       </AppProvider>
     </>
