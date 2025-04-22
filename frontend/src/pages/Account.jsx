@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PaddingMarging from '../components/ui/PaddingMarging';
 import CoreMemoryDisplay from '../components/ui/CoreMemoryDisplay';
 import useAuthAPI from '../libs/api_auth';
-import { LogOut, MessageSquareHeart, Trash } from 'lucide-react';
+import { LogOut, MessageSquareHeart, Trash, Turtle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { BarLoader } from 'react-spinners';
 import { Tooltip } from 'primereact/tooltip';
@@ -12,7 +12,7 @@ const Account = () => {
   const { getMe, logout, deleteAccount } = useAuthAPI();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [alert, setAlert] = useState(false);
+  const [alert, setAlert] = useState(null);
   const navigate = useNavigate();
 
   const fetchData = async () => {
@@ -30,10 +30,15 @@ const Account = () => {
   };
 
   const handleDeleteAccount = async () => {
+    setLoading(true)
+    setAlert(null)
     const confirm = window.confirm(
       'Are you sure you want to delete your account? This action cannot be undone.'
     );
-    if (!confirm) return;
+    if (!confirm) {
+      setLoading(false)
+      return
+    };
 
     const result = await deleteAccount();
     if (result.success) {
@@ -41,6 +46,8 @@ const Account = () => {
     } else {
       setAlert(result.error || 'Account deletion failed');
     }
+
+    setLoading(false)
   };
 
   const handleLogout = async () => {
@@ -62,6 +69,11 @@ const Account = () => {
       {loading && (
         <div className="flex w-full justify-center">
           <BarLoader />
+        </div>
+      )}
+      {alert && (
+        <div className="w-full text-red-600 text-center">
+          {alert}
         </div>
       )}
       <PaddingMarging>
