@@ -34,3 +34,11 @@
     animation: gradient-shift 5s ease infinite;
   }
 }
+
+.custom-dropdown-panel {
+  border-radius: 1rem !important;
+  overflow: hidden !important;
+  border: 1px solid #bdbdbd !important;
+  background-color: white !important;
+}
+

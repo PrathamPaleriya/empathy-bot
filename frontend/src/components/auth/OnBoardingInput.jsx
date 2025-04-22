@@ -4,6 +4,7 @@ import { Dropdown } from 'primereact/dropdown';
 import useAuthAPI from '../../libs/api_auth';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 
 const OnBoardingInput = () => {
   const [name, setName] = useState(null);
@@ -87,11 +88,12 @@ const OnBoardingInput = () => {
         </div>
         <Dropdown
           value={lang}
-          onChange={e => setLang(e.target.value)}
-          options={languageOpt}
+          onChange={e => setLang(e.value)}
+          options={languageOpt.map(opt => ({ label: opt, value: opt }))}
           placeholder="Pick a language."
-          className="bg-white border border-placeholder px-5 py-3 rounded-2xl w-full"
-          panelClassName="bg-white border border-placeholder px-5 py-3 rounded-2xl w-fit"
+          className="custom-dropdown-panel bg-white border border-placeholder px-2 py-1 rounded-2xl w-full"
+          dropdownIcon={<ChevronDown />}
+          panelClassName="custom-dropdown-panel"
           required
         />
       </div>
@@ -115,8 +117,9 @@ const OnBoardingInput = () => {
             value={gender}
             onChange={e => setGender(e.target.value)}
             placeholder="Select your gender."
-            className="bg-white border border-placeholder px-5 py-3 rounded-2xl w-full"
-            panelClassName="bg-white border border-placeholder px-5 py-3 rounded-2xl w-fit"
+            className="bg-white custom-dropdown-panel border border-placeholder px-2 py-1 rounded-2xl w-full"
+            dropdownIcon={<ChevronDown />}
+            panelClassName="custom-dropdown-panel"
             required
           />
         </div>
@@ -128,8 +131,9 @@ const OnBoardingInput = () => {
           value={vibeAge}
           onChange={e => setVibeAge(e.target.value)}
           placeholder="Wanna talk to a chill friend or a wise buddy?"
-          className="bg-white border border-placeholder px-5 py-3 rounded-2xl w-full"
-          panelClassName="bg-white border border-placeholder px-5 py-3 rounded-2xl w-fit"
+          className="custom-dropdown-panel bg-white border border-placeholder px-2 py-1 rounded-2xl w-full"
+          dropdownIcon={<ChevronDown />}
+          panelClassName="custom-dropdown-panel"
           required
         />
       </div>
