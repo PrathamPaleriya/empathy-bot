@@ -25,9 +25,9 @@ const LandingPage = () => {
       <main>
         <Hero />
         <HowItWorks />
-        <div className='py-20 text-center bg-white'>
+        <div className='py-20 px-5 text-center bg-white'>
           <div className='font-semibold text-4xl font-dm-sans text-black my-5'>Privacy is the Priority.</div>
-          <div className='text-lg my-3'>Your exact chat history isn't stored - so you can speak freely, without ever feeling watched.</div>
+          <div className='text-lg my-3'>Your exact chat history isn't stored <br/>So you can speak freely, without ever feeling watched.</div>
         </div>
         <Features />
         <About />
