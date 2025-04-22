@@ -26,7 +26,7 @@ const ForgotPass = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center bg-bg w-full min-h-screen h-full px-3 lg:px-20 font-manrope">
+    <div className="flex flex-col justify-center items-center bg-bg w-full min-h-[100svh] h-full px-3 lg:px-20 font-manrope">
       <Toast ref={toast} severity="success" position="top-center" />
       <div className="mt-10 text font-semibold text-xl md:text-3xl lg:text-4xl font-dm-sans text-start md:text-center">
         Forgot password? No problem
