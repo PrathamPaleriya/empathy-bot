@@ -32,7 +32,7 @@ def send_mail(msg: EmailMessage, to: str):
 
 
 def send_welcome_email(to: str):
-    """Function to send a mail when user create a account."""
+    """Function to send a mail when user creates an account."""
     subject = "Welcome to EmpathyBot! 🫂"
 
     plain_text_body = """
@@ -46,7 +46,7 @@ def send_welcome_email(to: str):
     - zero judgment, always support
     - chats that feel like 3AM convos
     - a bot that remembers you, not just your words
-    - Your conversations are safe — I don't store exact chat history, so feel free to speak your mind without any worries. 
+    - Your conversations are safe — I don't store exact chat history, so feel free to speak your mind without any worries.
 
     Thanks for showing up. Seriously.
     Let's build something beautiful together 🧡
@@ -55,7 +55,7 @@ def send_welcome_email(to: str):
     Just a guy who wants tech to feel more human
 
     P.S. If anything feels off or you've got ideas — just reply to this email. I read everything.
-    """ #noqa
+    """  #noqa
 
     html_body = """
     <html lang="en" style="margin:0;padding:0;background-color:#fefefe;font-family:sans-serif;">
@@ -128,6 +128,7 @@ def send_welcome_email(to: str):
     msg["From"] = SENDER_EMAIL
     msg["To"] = to
     msg["Subject"] = subject
+    msg["Reply-To"] = SENDER_EMAIL 
 
     msg.set_content(plain_text_body)
     msg.add_alternative(html_body, subtype="html")
@@ -135,9 +136,8 @@ def send_welcome_email(to: str):
     send_mail(msg, to)
 
 
-
 def send_delete_account_email(to: str):
-    """Function to send a mail when user deletes a account."""
+    """Function to send a mail when user deletes an account."""
     subject = "Your EmpathyBot account has been deleted."
 
     plain_text_body = """
@@ -221,12 +221,13 @@ def send_delete_account_email(to: str):
     msg["From"] = SENDER_EMAIL
     msg["To"] = to
     msg["Subject"] = subject
+    msg["Reply-To"] = SENDER_EMAIL  
 
+  
     msg.set_content(plain_text_body)
     msg.add_alternative(html_body, subtype="html")
 
     send_mail(msg, to)
-
 
 def send_reset_password_email(to: str, reset_link: str):
     """Function to send a reset password email with a link."""
@@ -301,6 +302,7 @@ def send_reset_password_email(to: str, reset_link: str):
     msg["From"] = SENDER_EMAIL
     msg["To"] = to
     msg["Subject"] = subject
+    msg["Reply-To"] = SENDER_EMAIL
 
     msg.set_content(plain_text_body)
     msg.add_alternative(html_body, subtype="html")
