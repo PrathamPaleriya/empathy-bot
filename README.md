@@ -85,7 +85,7 @@ It’s about building a space where people feel safe, seen, and understood — p
 ### Made with ❤️ by [Pratham](https://www.linkedin.com/in/prathampaleriya/)!!!!!!!!!!
 
 
-## License
+## 📄 License
 This project is licensed under the CC BY-NC-ND 4.0 License.  
 You may use it for inspiration and non-commercial collaboration only.  
 All rights are reserved for commercial usage. 
