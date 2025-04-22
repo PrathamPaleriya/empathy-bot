@@ -71,7 +71,7 @@ Have feedback or just wanna say hi?
 
 🔗 Try EmpathyBot here → https://empathy.athams.com  
 🔒 Read our Privacy Policy → https://empathy.athams.com/policy  
-👨‍💻 Connect with the maker → https://www.linkedin.com/in/prathampaleriya/
+👨‍💻 Connect with the me → https://www.linkedin.com/in/prathampaleriya/
 
 ---
 
