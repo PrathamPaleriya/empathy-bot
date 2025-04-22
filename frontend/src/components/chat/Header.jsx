@@ -30,19 +30,15 @@ const Header = () => {
             whileTap={{ scale: 0.9 }}
             transition={{ type: 'spring' }}
             data-pr-tooltip={tooltipText}
-            data-pr-at="bottom-20 left+10"
             className="profile w-9 md:w-10 aspect-square rounded-full bg-gradient-to-tr from-primary via-accent to-red-400 animate-gradient"
           />
         </Link>
         {/* <div className='w-full text-center text-white font-semibold h-full'>
             empathy-bot
         </div> */}
-        <Tooltip target=".report" />
         <a
-          data-pr-tooltip="Report any issue."
           href={mailHref}
           target="_blank"
-          data-pr-at="bottom-20 left+10"
           className="report flex items-center gap-1 font-bold text-red-600 hover:text-red-700 cursor-pointer text-base"
         >
           <div>

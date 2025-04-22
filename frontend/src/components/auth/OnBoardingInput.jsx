@@ -3,6 +3,7 @@ import { BarLoader } from 'react-spinners';
 import { Dropdown } from 'primereact/dropdown';
 import useAuthAPI from '../../libs/api_auth';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const OnBoardingInput = () => {
   const [name, setName] = useState(null);
@@ -133,8 +134,11 @@ const OnBoardingInput = () => {
         />
       </div>
 
-      <button
-        type="password"
+      <motion.button
+        type="submit"
+        whileHover={{}}
+        whileTap={{ scale: 0.95 }}
+        transition={{ type: 'spring' }}
         className="bg-accent border text-white font-semibold border-accent my-8 px-5 py-3 rounded-2xl w-full"
       >
         {loading ? (
@@ -144,7 +148,7 @@ const OnBoardingInput = () => {
         ) : (
           <div>Continue</div>
         )}
-      </button>
+      </motion.button>
     </form>
   );
 };

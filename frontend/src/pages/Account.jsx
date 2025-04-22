@@ -3,9 +3,10 @@ import PaddingMarging from '../components/ui/PaddingMarging';
 import CoreMemoryDisplay from '../components/ui/CoreMemoryDisplay';
 import useAuthAPI from '../libs/api_auth';
 import { LogOut, MessageSquareHeart, Trash } from 'lucide-react';
-import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router-dom';
 import { BarLoader } from 'react-spinners';
+import { Tooltip } from 'primereact/tooltip';
+import { motion } from 'framer-motion';
 
 const Account = () => {
   const { getMe, logout, deleteAccount } = useAuthAPI();
@@ -64,52 +65,70 @@ const Account = () => {
         </div>
       )}
       <PaddingMarging>
+        <Tooltip target=".btn-delete" content="Delete Account" position="top" />
+        <Tooltip target=".btn-logout" content="Logout" position="top" />
+        <Tooltip target=".btn-feedback" content="Feedback 💌" position="top" />
         <div className="flex items-center justify-between">
           <div className="text-xl md:text-3xl font-semibold text-secondary">
             Account <br className="block md:hidden" /> Settings
           </div>
           <div className="md:flex gap-3 hidden">
-            <Button
-              className="p-3 text-white bg-red-500 rounded-full hover:bg-red-600"
-              tooltip="Delete Account"
-              tooltipOptions={{ position: 'top' }}
+            <motion.button
+              whileHover={{}}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: 'spring' }}
+              className="btn-delete p-3 text-white bg-red-500 rounded-full hover:bg-red-600"
               onClick={handleDeleteAccount}
-              icon={<Trash />}
-            />
-            <Button
-              className="p-3 text-white bg-blue-500 rounded-full hover:bg-blue-600"
-              tooltip="Logout"
-              tooltipOptions={{ position: 'top' }}
+            >
+              <Trash />
+            </motion.button>
+            <motion.button
+              whileHover={{}}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: 'spring' }}
+              className="btn-logout p-3 text-white bg-blue-500 rounded-full hover:bg-blue-600"
               onClick={handleLogout}
-              icon={<LogOut />}
-            />
-            <Button
-              className="p-3 text-white bg-black rounded-full hover:bg-gray-700 transition-colors"
-              tooltip="Feedback 💌"
-              tooltipOptions={{ position: 'top' }}
+            >
+              <LogOut />
+            </motion.button>
+            <motion.button
+              whileHover={{}}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: 'spring' }}
+              className="btn-feedback p-3 text-white bg-black rounded-full hover:bg-gray-700 transition-colors"
               onClick={handleFeedback}
-              icon={<MessageSquareHeart />}
-            />
+            >
+              <MessageSquareHeart />
+            </motion.button>
           </div>
           <div className="flex gap-3 md:hidden">
-            <button
+            <motion.button
+              whileHover={{}}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: 'spring' }}
               className="p-3 aspect-square text-white bg-red-500 rounded-full hover:bg-red-600"
               onClick={handleDeleteAccount}
             >
               <Trash className="size-4" />
-            </button>
-            <Button
+            </motion.button>
+            <motion.button
+              whileHover={{}}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: 'spring' }}
               className="p-3 text-white bg-blue-500 rounded-full hover:bg-blue-600"
               onClick={handleLogout}
             >
               <LogOut className="size-4" />
-            </Button>
-            <Button
+            </motion.button>
+            <motion.button
+              whileHover={{}}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: 'spring' }}
               className="p-3 text-white bg-black rounded-full hover:bg-gray-700 transition-colors"
               onClick={handleFeedback}
             >
               <MessageSquareHeart className="size-4" />
-            </Button>
+            </motion.button>
           </div>
         </div>
 

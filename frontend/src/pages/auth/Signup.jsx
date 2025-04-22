@@ -4,7 +4,7 @@ import AuthSignup from '../../components/auth/AuthSignup';
 
 const Signup = () => {
   return (
-    <div className="flex flex-col justify-center items-center bg-bg w-full min-h-[100svh] h-full px-3 lg:px-20">
+    <div className="flex flex-col justify-center items-center bg-bg w-full min-h-[100svh] h-full px-3 lg:px-20 font-manrope">
       <div className="text-primary font-semibold text-3xl md:text-4xl lg:text-5xl font-dm-sans md:leading-11 lg:leading-14 text-center">
         Let's be <span className="text-secondary">emotionally</span> <br /> chaotic{' '}
         <span className="text-secondary">together</span> 😌
