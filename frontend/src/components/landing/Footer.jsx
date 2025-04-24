@@ -61,13 +61,9 @@ const Footer = () => {
             <div className="text-center mt-8 text-[#7c7c7c] text-sm">
               &copy; {new Date().getFullYear()} Athams. All rights reserved.
             </div>
-            <a
-              href="https://pratham.athams.com/"
-              target="_blank"
-              className="hover:underline text-center mt-8 text-[#7c7c7c] text-sm"
-            >
+            <div className="hover:underline text-center mt-8 text-[#7c7c7c] text-sm">
               By Athams.
-            </a>
+            </div>
           </div>
         </div>
       </div>

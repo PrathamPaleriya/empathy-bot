@@ -30,15 +30,15 @@ const Account = () => {
   };
 
   const handleDeleteAccount = async () => {
-    setLoading(true)
-    setAlert(null)
+    setLoading(true);
+    setAlert(null);
     const confirm = window.confirm(
       'Are you sure you want to delete your account? This action cannot be undone.'
     );
     if (!confirm) {
-      setLoading(false)
-      return
-    };
+      setLoading(false);
+      return;
+    }
 
     const result = await deleteAccount();
     if (result.success) {
@@ -47,7 +47,7 @@ const Account = () => {
       setAlert(result.error || 'Account deletion failed');
     }
 
-    setLoading(false)
+    setLoading(false);
   };
 
   const handleLogout = async () => {
@@ -71,11 +71,7 @@ const Account = () => {
           <BarLoader />
         </div>
       )}
-      {alert && (
-        <div className="w-full text-red-600 text-center">
-          {alert}
-        </div>
-      )}
+      {alert && <div className="w-full text-red-600 text-center">{alert}</div>}
       <PaddingMarging>
         <Tooltip target=".btn-delete" content="Delete Account" position="top" />
         <Tooltip target=".btn-logout" content="Logout" position="top" />
@@ -159,13 +155,7 @@ const Account = () => {
             <div>🔵 - Logout</div>
             <div>⚫ - Feedback</div>
           </div>
-          <a
-            href="https://pratham.athams.com/"
-            target="_blank"
-            className="hover:underline text-base"
-          >
-            By Athams.
-          </a>
+          <div className="hover:underline text-base">By Athams.</div>
         </div>
       </PaddingMarging>
     </div>

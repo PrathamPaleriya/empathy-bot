@@ -8,7 +8,6 @@ import useAuthAPI from '../libs/api_auth';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-
 const LandingPage = () => {
   const { isTokenValid } = useAuthAPI();
   const navigate = useNavigate();
@@ -25,9 +24,14 @@ const LandingPage = () => {
       <main>
         <Hero />
         <HowItWorks />
-        <div className='py-20 px-5 text-center bg-white'>
-          <div className='font-semibold text-4xl font-dm-sans text-black my-5'>Privacy is the Priority.</div>
-          <div className='text-lg my-3'>Your exact chat history isn't stored <br/>So you can speak freely, without ever feeling watched.</div>
+        <div className="py-20 px-5 text-center bg-white">
+          <div className="font-semibold text-4xl font-dm-sans text-black my-5">
+            Privacy is the Priority.
+          </div>
+          <div className="text-lg my-3">
+            Your exact chat history isn't stored <br />
+            So you can speak freely, without ever feeling watched.
+          </div>
         </div>
         <Features />
         <About />

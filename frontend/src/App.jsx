@@ -41,7 +41,7 @@ function App() {
   return (
     <>
       <AppProvider>
-        <Analytics/>
+        <Analytics />
         <RouterProvider router={router} />
       </AppProvider>
     </>

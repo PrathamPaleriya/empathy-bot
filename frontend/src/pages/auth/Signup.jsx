@@ -17,7 +17,9 @@ const Signup = () => {
         No pressure. Just vibes ✨ We don't store your chats — so speak your heart without stress.
         This ain't some enterprise product, just a chill side project made with love… from one
         friend to another 🤝 &nbsp;
-        <Link className="text-blue-500 hover:underline" to="/policy">Read Privacy Policy</Link>
+        <Link className="text-blue-500 hover:underline" to="/policy">
+          Read Privacy Policy
+        </Link>
       </div>
       <div className="fixed bottom-10 font-semibold text-placeholder text-xs">empathy-bot</div>
     </div>
