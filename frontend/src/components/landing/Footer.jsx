@@ -36,7 +36,7 @@ const Footer = () => {
                 Privacy Policy
               </a>
               <a
-                href="mailto:paleriyapratham@gmail.com?subject=EmpathyBot%20Feedback%20and%20Support"
+                href="https://linktr.ee/athams"
                 class="text-[#4f4f4f] hover:text-[#57b4ba] transition-colors"
               >
                 Contact Us
