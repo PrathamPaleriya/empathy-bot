@@ -66,7 +66,7 @@ const Footer = () => {
               target="_blank"
               className="hover:underline text-center mt-8 text-[#7c7c7c] text-sm"
             >
-              Made By Pratham Paleriya.
+              By Athams.
             </a>
           </div>
         </div>

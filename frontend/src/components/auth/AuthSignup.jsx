@@ -41,7 +41,7 @@ const AuthSignup = () => {
       />
       <input
         type="password"
-        placeholder="Your password"
+        placeholder="Set password"
         value={pass}
         onChange={e => setPass(e.target.value)}
         required

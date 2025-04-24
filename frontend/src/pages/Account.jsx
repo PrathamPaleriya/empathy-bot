@@ -164,7 +164,7 @@ const Account = () => {
             target="_blank"
             className="hover:underline text-base"
           >
-            Made by Pratham.
+            By Athams.
           </a>
         </div>
       </PaddingMarging>
