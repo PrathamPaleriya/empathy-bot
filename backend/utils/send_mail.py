@@ -9,7 +9,7 @@ from utils.logger_config import logger
 def send_mail(msg: EmailMessage, to: str):
     """Function to send a mail."""
     try:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+        with smtplib.SMTP_SSL("smtppro.zoho.in", 465) as server:
             server.login(SENDER_EMAIL, smtp_app_password)
             server.send_message(msg)
 
