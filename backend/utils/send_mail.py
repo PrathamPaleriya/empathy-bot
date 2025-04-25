@@ -2,15 +2,16 @@ import smtplib
 from email.message import EmailMessage
 
 from utils.constants import SENDER_EMAIL
-from utils.load_env import smtp_app_password
+from utils.load_env import bravo_password
 from utils.logger_config import logger
 
 
 def send_mail(msg: EmailMessage, to: str):
     """Function to send a mail."""
     try:
-        with smtplib.SMTP_SSL("smtppro.zoho.in", 465) as server:
-            server.login(SENDER_EMAIL, smtp_app_password)
+        with smtplib.SMTP("smtp-relay.brevo.com", 587) as server:
+            server.starttls()
+            server.login("8b6932001@smtp-brevo.com", bravo_password)
             server.send_message(msg)
 
         logger.info(
@@ -21,6 +22,7 @@ def send_mail(msg: EmailMessage, to: str):
         )
         
     except Exception as e:
+        print(e)
         logger.error(
             "Error sending email",
             extra={
@@ -38,23 +40,23 @@ def send_welcome_email(to: str):
     plain_text_body = """
     Hey there 👋,
 
-    Welcome to EmpathyBot — a tiny safe space on the internet I'm building with all heart and no filters.
+    Welcome to EmpathyBot — a tiny safe space on the internet we're building at Athams, with all heart and no filters.
 
-    EmpathyBot is more than just a project — it's something I've poured my heart into because I know what it's like to need a friend, especially when life feels overwhelming.
+    EmpathyBot is more than just a project — it's something we've poured our hearts into because we know what it's like to need a friend, especially when life feels overwhelming.
 
     ✨ What you can expect:
     - zero judgment, always support
     - chats that feel like 3AM convos
     - a bot that remembers you, not just your words
-    - Your conversations are safe — I don't store exact chat history, so feel free to speak your mind without any worries.
+    - Your conversations are safe — we don't store exact chat history, so feel free to speak your mind without any worries.
 
     Thanks for showing up. Seriously.
     Let's build something beautiful together 🧡
 
-    — Pratham
-    Just a guy who wants tech to feel more human
+    — Team Athams
+    Just some folks who want tech to feel more human
 
-    P.S. If anything feels off or you've got ideas — just reply to this email. I read everything.
+    P.S. If anything feels off or you've got ideas — just reply to this email. We read everything.
     """  #noqa
 
     html_body = """
@@ -76,13 +78,13 @@ def send_welcome_email(to: str):
 
                 <tr>
                   <td style="font-size:16px;line-height:1.7;color:#333;padding-bottom:20px;">
-                    Welcome to <strong>EmpathyBot</strong> — a tiny safe space on the internet I'm building with all heart and no filters.
+                    Welcome to <strong>EmpathyBot</strong> — a tiny safe space on the internet we're building at <strong>Athams</strong>, with all heart and no filters.
                   </td>
                 </tr>
 
                 <tr>
                   <td style="font-size:16px;line-height:1.7;color:#333;padding-bottom:20px;">
-                    This isn't a product made by a big team. It's a personal project I'm pouring my soul into — something real, something that <em>feels</em> like a friend who listens, remembers, and vibes with you.
+                    This isn't a product made by a big company. It's a project we've poured our souls into — something real, something that <em>feels</em> like a friend who listens, remembers, and vibes with you.
                   </td>
                 </tr>
 
@@ -92,13 +94,13 @@ def send_welcome_email(to: str):
                     - zero judgment, always support<br />
                     - chats that feel like 3AM convos<br />
                     - a bot that remembers you, not just your words<br />
-                    - Your conversations are safe — I don't store exact chat history, so feel free to speak your mind without any worries.
+                    - Your conversations are safe — we don't store exact chat history, so feel free to speak your mind without any worries.
                   </td>
                 </tr>
 
                 <tr>
                   <td style="font-size:16px;line-height:1.7;color:#333;padding-bottom:28px;">
-                    I know we're all figuring life out — so if EmpathyBot can even help a little, that's everything to me.
+                    We know we're all figuring life out — so if EmpathyBot can even help a little, that's everything to us.
                   </td>
                 </tr>
 
@@ -106,14 +108,14 @@ def send_welcome_email(to: str):
                   <td style="font-size:16px;line-height:1.7;color:#333;padding-bottom:40px;">
                     Thanks for showing up. Seriously.<br /><br />
                     Let's build something beautiful together 🧡<br /><br />
-                    — Pratham<br />
-                    <span style="font-size:14px;color:#777;">Just a guy who wants tech to feel more human</span>
+                    — Team Athams<br />
+                    <span style="font-size:14px;color:#777;">Just some folks who want tech to feel more human</span>
                   </td>
                 </tr>
 
                 <tr>
                   <td style="font-size:14px;color:#aaa;border-top:1px solid #eee;padding-top:20px;">
-                    P.S. If anything feels off or you've got ideas — just reply to this email. I read everything.
+                    P.S. If anything feels off or you've got ideas — just reply to this email. We read everything.
                   </td>
                 </tr>
               </table>
@@ -143,20 +145,20 @@ def send_delete_account_email(to: str):
     plain_text_body = """
     Hey there,
 
-    I noticed that you've decided to delete your EmpathyBot account, and while I completely respect your decision, I just want to take a moment to thank you for being a part of this journey.
+    We noticed that you've decided to delete your EmpathyBot account, and while we completely respect your decision, we just want to take a moment to thank you for being a part of this journey.
 
-    EmpathyBot was built with the intention of creating a space where you could feel heard, understood, and supported. If for any reason, it didn't meet your expectations or if you'd just like a break, I totally get it.
+    EmpathyBot was built with the intention of creating a space where you could feel heard, understood, and supported. If for any reason, it didn't meet your expectations or if you'd just like a break, we totally get it.
 
-    That being said, if you ever decide to come back, I'll be here. And if you have any feedback or thoughts on how I can improve, I'd love to hear them. Your voice matters, even if you're not here right now.
+    That being said, if you ever decide to come back, we'll be here. And if you have any feedback or thoughts on how we can improve, we'd love to hear them. Your voice matters, even if you're not here right now.
 
     Take care, and remember, you're always welcome to return if you ever need that little bit of comfort again.
 
     Wishing you all the best 💛
 
-    — Pratham
-    Just a guy who wants tech to feel more human
+    — Team Athams
+    Just a team who wants tech to feel more human
 
-    P.S. If there's anything I could do better, please feel free to reply to this email. I'm always listening. 
+    P.S. If there's anything we could do better, please feel free to reply to this email. We're always listening. 
     """  #noqa
 
     html_body = """
@@ -179,17 +181,17 @@ def send_delete_account_email(to: str):
                 <td style="font-size:16px;line-height:1.7;color:#333;padding-bottom:20px;">
                     Hey there,  
                     <br />
-                    I noticed that you've decided to delete your EmpathyBot account, and while I completely respect your decision, I just want to take a moment to thank you for being a part of this journey.
+                    We noticed that you've decided to delete your EmpathyBot account, and while we completely respect your decision, we just want to take a moment to thank you for being a part of this journey.
                 </td>
                 </tr>
                 <tr>
                 <td style="font-size:16px;line-height:1.7;color:#333;padding-bottom:20px;">
-                    EmpathyBot was built with the intention of creating a space where you could feel heard, understood, and supported. If for any reason, it didn't meet your expectations or if you'd just like a break, I totally get it.
+                    EmpathyBot was built with the intention of creating a space where you could feel heard, understood, and supported. If for any reason, it didn't meet your expectations or if you'd just like a break, we totally get it.
                 </td>
                 </tr>
                 <tr>
                 <td style="font-size:16px;line-height:1.7;color:#333;padding-bottom:20px;">
-                    That being said, if you ever decide to come back, I'll be here. And if you have any feedback or thoughts on how I can improve, I'd love to hear them. Your voice matters, even if you're not here right now.
+                    That being said, if you ever decide to come back, we'll be here. And if you have any feedback or thoughts on how we can improve, we'd love to hear them. Your voice matters, even if you're not here right now.
                 </td>
                 </tr>
                 <tr>
@@ -200,13 +202,13 @@ def send_delete_account_email(to: str):
                 <tr>
                 <td style="font-size:16px;line-height:1.7;color:#333;padding-bottom:40px;">
                     Wishing you all the best 💛<br /><br />
-                    — Pratham<br />
-                    <span style="font-size:14px;color:#777;">Just a guy who wants tech to feel more human</span>
+                    — Team Athams<br />
+                    <span style="font-size:14px;color:#777;">Just a team who wants tech to feel more human</span>
                 </td>
                 </tr>
                 <tr>
                 <td style="font-size:14px;color:#aaa;border-top:1px solid #eee;padding-top:20px;">
-                    P.S. If there's anything I could do better, please feel free to reply to this email. I'm always listening.
+                    P.S. If there's anything we could do better, please feel free to reply to this email. We're always listening.
                 </td>
                 </tr>
             </table>
@@ -245,8 +247,8 @@ def send_reset_password_email(to: str, reset_link: str):
     If you didn't request this, you can safely ignore this email.
 
     Take care 💛  
-    — Pratham  
-    Just a guy who wants tech to feel more human
+    — Team Athams
+    Just a team who wants tech to feel more human
     """ #noqa
 
     html_body = f"""
@@ -286,8 +288,8 @@ def send_reset_password_email(to: str, reset_link: str):
                 <tr>
                 <td style="font-size:16px;line-height:1.7;color:#333;padding-bottom:40px;">
                     Wishing you all the best 💛<br /><br />
-                    — Pratham<br />
-                    <span style="font-size:14px;color:#777;">Just a guy who wants tech to feel more human</span>
+                    — Team Athams<br />
+                    <span style="font-size:14px;color:#777;">Just a team who wants tech to feel more human</span>
                 </td>
                 </tr>
             </table>

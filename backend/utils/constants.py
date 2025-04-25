@@ -26,4 +26,4 @@ SKIP_FIELDS_LOGGER = (
     "funcName",
 )
 
-SENDER_EMAIL = "paleriyapratham@gmail.com"
+SENDER_EMAIL = "pratham@athams.com"
