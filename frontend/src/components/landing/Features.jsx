@@ -6,7 +6,7 @@ const Features = () => {
       icon: <Brain size={32} className="text-[#57b4ba]" />,
       title: 'Emotional Memory',
       description:
-        'EmpathyBot remembers your conversations, preferences, and emotional patterns to provide personalized support.',
+        'Eira remembers your conversations, preferences, and emotional patterns to provide personalized support.',
     },
     {
       icon: <MessageCircle size={32} className="text-[#57b4ba]" />,
@@ -30,7 +30,7 @@ const Features = () => {
             What Makes It Special
           </h2>
           <p className="text-lg text-[#4f4f4f] max-w-2xl mx-auto">
-            EmpathyBot combines advanced AI with emotional intelligence to create a uniquely
+            Eira combines advanced AI with emotional intelligence to create a uniquely
             supportive experience.
           </p>
         </div>

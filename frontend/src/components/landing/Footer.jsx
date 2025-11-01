@@ -20,7 +20,7 @@ const Footer = () => {
               transition={{ type: 'spring' }}
               className="bg-[#57b4ba] hover:bg-[#015551]  text-white text-lg py-4 px-10 rounded-full transition-colors shadow-md flex items-center mx-auto"
             >
-              Try EmpathyBot Free
+              Try Eira Free
               <ArrowRight className="ml-2" size={20} />
             </motion.button>
           </Link>
@@ -29,7 +29,7 @@ const Footer = () => {
         <div className="border-t border-[#e0e0e0] pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
-              <span className="text-[#015551] font-dm-sans font-bold text-xl">EmpathyBot</span>
+              <span className="text-[#015551] font-dm-sans font-bold text-xl">Eira</span>
             </div>
             <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
               <a href="policy" className="text-[#4f4f4f] hover:text-[#57b4ba] transition-colors">

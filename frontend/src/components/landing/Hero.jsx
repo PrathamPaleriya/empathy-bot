@@ -22,7 +22,7 @@ const Hero = () => {
               transition={{ type: 'spring' }}
               className="bg-[#57b4ba] hover:bg-[#015551]  text-white text-lg py-4 px-10 rounded-full transition-colors shadow-md flex items-center mx-auto"
             >
-              Try EmpathyBot Free
+              Try Eira Free
               <ArrowRight className="ml-2" size={20} />
             </motion.button>
           </Link>
@@ -30,7 +30,7 @@ const Hero = () => {
 
         <div className="mt-15 md:mt-20">
           <ImageCard
-            path={'empathybot/demo.png'}
+            path={'Eira/demo.png'}
             className="rounded-2xl md:rounded-4xl aspect-video h-full w-full object-center object-cover"
           />
         </div>

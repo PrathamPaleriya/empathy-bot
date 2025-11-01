@@ -14,7 +14,7 @@ const PrivacyPolicy = () => {
         <PaddingMarging>
           <div className=" text-black font-manrope p-6 text-xs md:text-base">
             <h1 className="text-lg md:text-xl font-bold mb-6">
-              Privacy Policy & Terms of Service for EmpathyBot
+              Privacy Policy & Terms of Service for Eira
             </h1>
             <p className="mb-6">Last Updated: 23/04/2025</p>
 
@@ -77,7 +77,7 @@ const PrivacyPolicy = () => {
               </h2>
               <p>
                 We use OpenAI’s language model. Their privacy policy also applies when using
-                EmpathyBot.
+                Eira.
               </p>
             </section>
 
@@ -94,7 +94,7 @@ const PrivacyPolicy = () => {
             <section className="mb-8">
               <h2 className="text-lg md:text-xl font-semibold mb-2">7. Age and Parental Consent</h2>
               <p>
-                You must be 13+ to use EmpathyBot. If you are under 18, parental or guardian consent
+                You must be 13+ to use Eira. If you are under 18, parental or guardian consent
                 is required.
               </p>
             </section>
@@ -110,7 +110,7 @@ const PrivacyPolicy = () => {
             <section className="mb-8">
               <h2 className="text-lg md:text-xl font-semibold mb-2">9. Feedback and Improvement</h2>
               <p>
-                We use your feedback (not tied to your name or identity) to improve EmpathyBot’s
+                We use your feedback (not tied to your name or identity) to improve Eira’s
                 responses and features.
               </p>
             </section>
@@ -120,7 +120,7 @@ const PrivacyPolicy = () => {
                 10. Changes in Features and Privacy Policy
               </h2>
               <p>
-                EmpathyBot is in development. Features may change, and so can this policy. We'll
+                Eira is in development. Features may change, and so can this policy. We'll
                 notify you of any updates.
               </p>
             </section>
@@ -140,7 +140,7 @@ const PrivacyPolicy = () => {
                 12. Legal Status and Disputes
               </h2>
               <p>
-                EmpathyBot is not officially registered yet. Any issues will be resolved through
+                Eira is not officially registered yet. Any issues will be resolved through
                 mutual discussion.
               </p>
             </section>

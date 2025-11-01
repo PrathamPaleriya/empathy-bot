@@ -16,7 +16,7 @@ const Login = () => {
       <div className="font-manrope text-center w-[95%] md:w-[80%] lg:w-[60%] pt-20 font-semibold text-subheading text-xs md:text-base">
         I'm all ears! Your feedback means the world to me, help me make this better! &nbsp;
         <a
-          href="mailto:paleryapratham@gmail.com?subject=Empathybot feedback"
+          href="mailto:paleryapratham@gmail.com?subject=Eira feedback"
           className="text-blue-500 hover:underline"
         >
           Feedback Please

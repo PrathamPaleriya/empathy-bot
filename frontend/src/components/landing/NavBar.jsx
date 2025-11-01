@@ -9,7 +9,7 @@ const Navbar = () => {
     <nav className="py-6 px-6 md:px-12 lg:px-24">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
-          <span className="text-[#015551] font-dm-sans font-bold text-2xl">EmpathyBot</span>
+          <span className="text-[#015551] font-dm-sans font-bold text-2xl">Eira</span>
         </div>
 
         {/* Desktop Navigation */}
@@ -27,7 +27,7 @@ const Navbar = () => {
             to="/signup"
             className="bg-[#57b4ba] hover:bg-[#015551] text-white py-2 px-6 rounded-full transition-colors"
           >
-            Try EmpathyBot Free
+            Try Eira Free
           </Link>
         </div>
 
@@ -68,7 +68,7 @@ const Navbar = () => {
               to="/signup"
               className="bg-[#57b4ba] hover:bg-[#015551] text-white py-2 px-6 rounded-full transition-colors w-full"
             >
-              Try EmpathyBot Free
+              Try Eira Free
             </Link>
           </div>
         </div>

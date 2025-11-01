@@ -27,7 +27,7 @@ const HowItWorks = () => {
             How It Works
           </h2>
           <p className="text-lg text-[#4f4f4f] max-w-2xl mx-auto">
-            EmpathyBot makes emotional connection simple and accessible whenever you need it.
+            Eira makes emotional connection simple and accessible whenever you need it.
           </p>
         </div>
 
