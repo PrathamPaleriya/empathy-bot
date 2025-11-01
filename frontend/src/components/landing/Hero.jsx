@@ -30,7 +30,7 @@ const Hero = () => {
 
         <div className="mt-15 md:mt-20">
           <ImageCard
-            path={'Eira/demo.png'}
+            path={'empathybot/demo.png'}
             className="rounded-2xl md:rounded-4xl aspect-video h-full w-full object-center object-cover"
           />
         </div>
